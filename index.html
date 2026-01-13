@@ -1,11 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="P6dQ4MvH2A7SxjOhBnrQRCPH99P0pR5OugqaAH4BKyE" />
+    <meta property="og:description" content="Welcome to the website of Md. Aslam Mia">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Welcome to the personal website of Md. Aslam Mia, showcasing his achievements and projects.">
+    <meta name="author" content="Md. Aslam Mia">
+    <!--favicon-->
+    <link rel="icon" type="image/png" href="assets/imgs/BUET_LOGO.png">
+    <title>Md. Aslam Mia</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap + Steller main styles -->
+    <link rel="stylesheet" href="assets/css/steller.css">
+    <style>
+        /* CSS code to make images responsive on mobile view */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Custom spacing for mobile and desktop views */
+        .custom-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .custom-row > div {
+            margin-bottom: 20px;
+        }
+
+        /* CSS for stacking in mobile view */
+        @media only screen and (max-width: 767px) {
+            .stack {
+                flex-direction: column;
+            }
+        }
+
+        /* Icon styling for education section */
+        .education-icon {
+            margin-right: 8px;
+            color: #000;
+        }
+
+        /* Remove bullet points only from the Education list */
+        .education-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .education-list li {
+            padding-bottom: 10px; /* Space between items */
+        }
+
+        /* Fix for separate lines in Education */
+        .education-program {
+            display: block;
+            font-weight: bold;
+        }
+
+        .education-university {
+            display: block;
+            color: #555;
+        }
+    </style>
 </head>
-<body>
-    Nahin Bin Kaysar
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- Page navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h5 class="title">Md. Aslam Mia</h5>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="publication.html">Publication</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <input type="checkbox" class="checkbox" id="chk" onclick="darkmode()" />
+                        <label class="label" for="chk">
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                            <span class="ball"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End of page navigation -->
+
+    <!-- Main content -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Left side with image and details -->
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <div class="text-center mb-4">
+                    <img src="assets/imgs/mydp.JPG" alt="Aslam" class="mb-1 rounded-circle">
+                </div>
+                <div class="text-center">
+                    <h1 class="title" style="font-size: 40px; display: inline-block;">Md. Aslam Mia</h1>
+                    <small>(he/his/him)</small>
+                    <p>undergraduate student at <a href="https://www.buet.ac.bd/web/#/">Bangladesh University of Engineering and Technology</a></p>
+                    <div class="buttons pt-3">
+                        <a href="assets/files/myResume.pdf" download>
+                            <button class="btn btn-dark rounded">Download CV</button>
+                        </a>
+                    </div>
+                    <div class="socials mt-2 d-flex justify-content-center">
+                        <a class="social-item" href="mailto:mdaslam.cee@gmail.com"><i class="ti-email"></i></a>
+                        <a class="social-item" href="https://www.linkedin.com/in/aslam-buet"><i class="ti-linkedin"></i></a>
+                        <a class="social-item" href="https://github.com/mdaslamcee"><i class="ti-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side with About Me, Interests, and Education section -->
+            <div class="col-md-8">
+                <h4>About Me</h4>
+                <p class="mb-3">
+                   Md. Aslam Mia is an undergraduate student at <a href="https://www.buet.ac.bd/web/#/">Bangladesh University of Engineering and Technology (BUET)</a>, His research interests include Intelligent Transportation Systems (ITS), Computer Vision, autonomous vehicles, and the application of AI and machine learning in transportation engineering. He is currently completing his undergraduate thesis under the supervision of <a href="https://ce.buet.ac.bd/profile-of-md-mizanur-rahman/">Dr. Md. Mizanur Rahman</a>, focusing on Intelligent Transportation Systems, with specific research on analyzing the robustness of adaptive traffic control systems using reinforcement learning.
+                </p>
+                <p class="mb-3">
+                   Previously, he worked on image annotation for computer vision–based traffic parameter analysis as part of a senior thesis project in his department. He also completed an internship at the <a href="https://pwd.gov.bd/">Public Works Department (PWD)</a>, Dhaka, Bangladesh, where he worked with the Design Division, Project Division, and Materials Testing Laboratory. During this internship, he participated in site visits, observed field operations, and gained practical experience in real-world construction practices, project management processes, and professional workplace interactions.
+                </p>
+
+                <!-- Interests and Education Section (side by side on desktop) -->
+                <div class="custom-row stack row mt-5">
+                    <div class="col-md-6">
+                        <h4>Interests</h4>
+                        <ul>
+                            <li>ITS</li>
+                            <li>Application of AI & ML in Transportation Engineering</li>
+                            <li>Computer Vision</li>
+                            <li>Autonomous Vehicle</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Education</h4>
+                        <ul class="education-list">
+                            <li>
+                                <span class="education-program">B.Sc. in Civil Engineering</span>
+                                <span class="education-university">Bangladesh University of Engineering & Technology (BUET)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-2">
+            <h4>Latest News</h4>
+           <ul>
+     <li>
+         <p>Ongoing thesis research</p>
+     <li>
+        <p>Ongoing capstone project</a></p>
+    </li>           
+</ul>
+
+        </div>
+    </div>
+
+    <!-- Dark mode script -->
+    <script>
+        function darkmode() {
+            const checkbox = document.getElementById('chk');
+            const body = document.body;
+
+            if (checkbox.checked) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        }
+    </script>
+
+    <!-- jQuery and Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
