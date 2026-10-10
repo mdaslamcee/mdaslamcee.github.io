@@ -5,10 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Projects and engineering experience of Md. Aslam Mia.">
+
+    <meta name="description" content="Academic and professional engineering projects of Md. Aslam Mia.">
     <meta name="author" content="Md. Aslam Mia">
 
     <link rel="icon" type="image/png" href="assets/imgs/BUET_LOGO.png">
+
     <title>Projects | Md. Aslam Mia</title>
 
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
@@ -30,6 +32,10 @@
             --border-color: #e5eaf1;
             --shadow: 0 8px 30px rgba(26, 54, 93, 0.07);
             --hover-shadow: 0 16px 40px rgba(26, 54, 93, 0.13);
+            --title-bar-bg: #e8f2ff;
+            --title-bar-border: #d2e3fc;
+            --title-bar-text: #17365d;
+            --title-bar-label: #0066cc;
         }
 
         html {
@@ -40,13 +46,15 @@
         body {
             background: var(--page-bg);
             color: var(--text-color);
-            font-family: inherit;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        a {
-            transition: color 0.25s ease, background-color 0.25s ease,
-                        transform 0.25s ease, box-shadow 0.25s ease;
+        a,
+        button {
+            transition: color 0.25s ease,
+                        background-color 0.25s ease,
+                        transform 0.25s ease,
+                        box-shadow 0.25s ease;
         }
 
         /* =========================================
@@ -54,7 +62,7 @@
         ========================================= */
 
         .navbar {
-            background: rgba(255, 255, 255, 0.96);
+            background: rgba(255, 255, 255, 0.97);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 2px 18px rgba(0, 0, 0, 0.05);
@@ -91,13 +99,15 @@
             transform: scaleX(1);
         }
 
+        /* =========================================
+           DARK MODE TOGGLE
+        ========================================= */
+
         .theme-toggle {
             display: flex;
             align-items: center;
             margin-left: 12px;
         }
-
-        /* Dark/light toggle */
 
         .checkbox {
             position: absolute;
@@ -158,10 +168,15 @@
             position: relative;
             overflow: hidden;
             text-align: center;
-            padding: 65px 20px 48px;
-            margin-top: 70px;
+            padding: 60px 20px 45px;
+            margin-top: 90px;
             margin-bottom: 35px;
-            background: linear-gradient(135deg, #eaf3ff 0%, #f8fbff 55%, #e9f7ff 100%);
+            background: linear-gradient(
+                135deg,
+                #eaf3ff 0%,
+                #f8fbff 55%,
+                #e9f7ff 100%
+            );
             border-radius: 18px;
         }
 
@@ -171,12 +186,12 @@
             position: absolute;
             border-radius: 50%;
             pointer-events: none;
+            background: rgba(0, 123, 255, 0.06);
         }
 
         .projects-header::before {
             width: 230px;
             height: 230px;
-            background: rgba(0, 123, 255, 0.06);
             top: -110px;
             left: -55px;
         }
@@ -184,7 +199,6 @@
         .projects-header::after {
             width: 190px;
             height: 190px;
-            background: rgba(0, 123, 255, 0.06);
             bottom: -115px;
             right: -30px;
         }
@@ -228,47 +242,28 @@
             margin-bottom: 30px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease,
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease,
                         background-color 0.3s ease;
-            animation: fadeInUp 0.65s ease both;
+            animation: fadeInUp 0.6s ease both;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: var(--hover-shadow);
         }
 
-        .project-card:nth-of-type(2) {
-            animation-delay: 0.12s;
-        }
+        /* =========================================
+           COLORED PROJECT TITLE BARS
+           NO ICONS BEFORE PROJECT TITLES
+        ========================================= */
 
         .project-card-header {
-            padding: 25px 28px 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: flex-start;
-            gap: 17px;
-        }
-
-        .project-icon {
-            flex: 0 0 48px;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #eaf3ff;
-            color: var(--primary);
-            border-radius: 13px;
-            font-size: 21px;
-        }
-
-        .project-title {
-            font-size: 19px;
-            font-weight: 700;
-            line-height: 1.55;
-            color: var(--text-color);
-            margin: 0;
+            display: block;
+            padding: 23px 28px;
+            background: var(--title-bar-bg);
+            border-bottom: 1px solid var(--title-bar-border);
+            transition: background-color 0.3s ease;
         }
 
         .project-label {
@@ -277,8 +272,16 @@
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--primary);
+            color: var(--title-bar-label);
             margin-bottom: 7px;
+        }
+
+        .project-title {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.55;
+            color: var(--title-bar-text);
+            margin: 0;
         }
 
         .project-card-body {
@@ -315,7 +318,7 @@
             gap: 9px;
             font-size: 16px;
             font-weight: 700;
-            margin: 30px 0 15px;
+            margin: 28px 0 15px;
             color: var(--text-color);
         }
 
@@ -337,11 +340,11 @@
             object-fit: contain;
             display: block;
             margin: 0 auto;
-            transition: transform 0.45s ease, opacity 0.3s ease;
+            transition: transform 0.45s ease;
         }
 
         .project-image-wrapper:hover .project-image {
-            transform: scale(1.025);
+            transform: scale(1.02);
         }
 
         .image-overlay {
@@ -350,35 +353,34 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(13, 32, 58, 0.48);
+            background: rgba(13, 32, 58, 0.45);
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
-        .project-image-wrapper:hover .image-overlay,
-        .project-image-wrapper:focus-within .image-overlay {
+        .project-image-wrapper:hover .image-overlay {
             opacity: 1;
         }
 
         .image-overlay span {
-            display: inline-block;
             padding: 11px 18px;
             border-radius: 8px;
-            background: white;
+            background: #ffffff;
             color: #1e293b;
             font-weight: 600;
             font-size: 14px;
         }
 
         /* =========================================
-           BUTTONS
+           TWO PROJECT BUTTONS ONLY
         ========================================= */
 
         .project-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 17px;
+            margin-top: 20px;
         }
 
         .project-btn {
@@ -386,13 +388,16 @@
             align-items: center;
             justify-content: center;
             gap: 9px;
-            min-height: 43px;
-            padding: 10px 17px;
+            min-height: 44px;
+            padding: 10px 18px;
             border: 1px solid var(--primary);
-            border-radius: 8px;
+            border-radius: 9px;
+            font-family: inherit;
             font-size: 14px;
             font-weight: 600;
+            line-height: 1.5;
             text-decoration: none !important;
+            cursor: pointer;
         }
 
         .project-btn-primary {
@@ -419,27 +424,31 @@
             transform: translateY(-2px);
         }
 
+        .project-btn:focus-visible {
+            outline: 3px solid rgba(0, 123, 255, 0.35);
+            outline-offset: 3px;
+        }
+
         /* =========================================
            EMBEDDED PDF VIEWER
         ========================================= */
 
-        .pdf-section {
-            margin-top: 30px;
-            padding-top: 25px;
+        .pdf-section[hidden] {
+            display: none !important;
+        }
+
+        .pdf-section:not([hidden]) {
+            display: block;
+            margin-top: 28px;
+            padding-top: 24px;
             border-top: 1px solid var(--border-color);
+            animation: fadeInUp 0.35s ease;
+            scroll-margin-top: 90px;
         }
 
-        .pdf-heading-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
+        .pdf-section .preview-heading {
+            margin-top: 0;
             margin-bottom: 15px;
-        }
-
-        .pdf-heading-row .preview-heading {
-            margin: 0;
         }
 
         .pdf-viewer {
@@ -448,7 +457,7 @@
             height: 620px;
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            background: #f1f3f5;
+            background: #ffffff;
         }
 
         .pdf-note {
@@ -476,99 +485,8 @@
         }
 
         /* =========================================
-           DARK MODE
+           BACK TO TOP
         ========================================= */
-
-        body.dark-mode {
-            --page-bg: #111827;
-            --card-bg: #1f2937;
-            --text-color: #f3f4f6;
-            --muted-color: #c0c9d6;
-            --border-color: #374151;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-            --hover-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-
-            background: var(--page-bg);
-            color: var(--text-color);
-        }
-
-        body.dark-mode .navbar {
-            background: rgba(24, 32, 46, 0.97);
-        }
-
-        body.dark-mode .navbar .navbar-brand,
-        body.dark-mode .navbar .nav-link {
-            color: #f3f4f6;
-        }
-
-        body.dark-mode .projects-header {
-            background: linear-gradient(135deg, #1b2c45, #1c2534);
-        }
-
-        body.dark-mode .projects-header h1 {
-            color: #f3f4f6;
-        }
-
-        body.dark-mode .projects-header p {
-            color: #c0c9d6;
-        }
-
-        body.dark-mode .header-icon {
-            background: #27364b;
-        }
-
-        body.dark-mode .project-icon {
-            background: #263c5b;
-            color: #75b5ff;
-        }
-
-        body.dark-mode .project-card {
-            background: var(--card-bg);
-            border-color: var(--border-color);
-        }
-
-        body.dark-mode .project-title,
-        body.dark-mode .preview-heading {
-            color: var(--text-color);
-        }
-
-        body.dark-mode .project-image-wrapper {
-            background: #151d2a;
-        }
-
-        body.dark-mode .pdf-viewer {
-            background: #ffffff;
-        }
-
-        body.dark-mode .project-btn-outline {
-            color: #8fc4ff !important;
-            border-color: #6db2ff;
-        }
-
-        body.dark-mode .project-btn-outline:hover {
-            background: var(--primary);
-            color: #ffffff !important;
-        }
-
-        body.dark-mode .page-footer {
-            border-color: var(--border-color);
-        }
-
-        /* =========================================
-           ANIMATIONS AND ACCESSIBILITY
-        ========================================= */
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
         .back-to-top {
             position: fixed;
@@ -603,47 +521,139 @@
             transform: translateY(-3px);
         }
 
+        /* =========================================
+           DARK MODE
+        ========================================= */
+
+        body.dark-mode {
+            --page-bg: #111827;
+            --card-bg: #1f2937;
+            --text-color: #f3f4f6;
+            --muted-color: #c0c9d6;
+            --border-color: #374151;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+            --hover-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+
+            --title-bar-bg: #243b5a;
+            --title-bar-border: #344e70;
+            --title-bar-text: #ffffff;
+            --title-bar-label: #91c5ff;
+
+            background: var(--page-bg);
+            color: var(--text-color);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(24, 32, 46, 0.97);
+        }
+
+        body.dark-mode .navbar .navbar-brand,
+        body.dark-mode .navbar .nav-link {
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .projects-header {
+            background: linear-gradient(135deg, #1b2c45, #1c2534);
+        }
+
+        body.dark-mode .projects-header h1 {
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .projects-header p {
+            color: #c0c9d6;
+        }
+
+        body.dark-mode .header-icon {
+            background: #27364b;
+        }
+
+        body.dark-mode .project-title,
+        body.dark-mode .preview-heading {
+            color: var(--text-color);
+        }
+
+        body.dark-mode .project-image-wrapper {
+            background: #151d2a;
+        }
+
+        body.dark-mode .project-btn-outline {
+            color: #8fc4ff !important;
+            border-color: #6db2ff;
+        }
+
+        body.dark-mode .project-btn-outline:hover {
+            background: var(--primary);
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .pdf-viewer {
+            background: #ffffff;
+        }
+
+        body.dark-mode .page-footer {
+            border-color: var(--border-color);
+        }
+
+        /* =========================================
+           ANIMATIONS
+        ========================================= */
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+
         @media (max-width: 767px) {
             .projects-header {
-                padding: 45px 18px 35px;
-                margin-top: 65px;
+                padding: 42px 18px 35px;
+                margin-top: 75px;
                 border-radius: 13px;
             }
 
             .project-card-header {
                 padding: 20px 18px;
-                gap: 13px;
             }
 
             .project-card-body {
                 padding: 20px 18px 24px;
             }
 
-            .project-icon {
-                flex-basis: 42px;
-                width: 42px;
-                height: 42px;
-                font-size: 18px;
-            }
-
             .project-title {
                 font-size: 17px;
             }
 
+            .project-actions .project-btn {
+                flex: 1 1 180px;
+            }
+
             .pdf-viewer {
-                height: 430px;
-            }
-
-            .project-actions {
-                gap: 10px;
-            }
-
-            .project-btn {
-                flex: 1 1 150px;
+                height: 450px;
             }
 
             .theme-toggle {
                 margin: 12px 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .project-actions .project-btn {
+                flex: 1 1 100%;
+            }
+
+            .pdf-viewer {
+                height: 400px;
             }
         }
 
@@ -662,6 +672,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
     <!-- NAVIGATION -->
+
     <nav class="navbar navbar-expand-lg navbar-light fixed-top"
          data-spy="affix" data-offset-top="0">
 
@@ -671,7 +682,8 @@
                 <h5 class="title">Md. Aslam Mia</h5>
             </a>
 
-            <button class="navbar-toggler" type="button"
+            <button class="navbar-toggler"
+                    type="button"
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent"
@@ -694,21 +706,28 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page"
+                        <a class="nav-link"
+                           aria-current="page"
                            href="projects.html">Projects</a>
                     </li>
 
                     <li class="nav-item theme-toggle">
-                        <input type="checkbox" class="checkbox"
-                               id="chk" aria-label="Toggle dark mode">
 
-                        <label class="label" for="chk"
+                        <input type="checkbox"
+                               class="checkbox"
+                               id="chk"
+                               aria-label="Toggle dark mode">
+
+                        <label class="label"
+                               for="chk"
                                title="Switch between light and dark mode">
 
                             <i class="fas fa-moon" aria-hidden="true"></i>
                             <i class="fas fa-sun" aria-hidden="true"></i>
                             <span class="ball"></span>
+
                         </label>
+
                     </li>
 
                 </ul>
@@ -718,9 +737,11 @@
 
 
     <!-- MAIN CONTENT -->
+
     <main class="container">
 
         <!-- PAGE HEADER -->
+
         <header class="projects-header">
 
             <div class="header-icon">
@@ -739,28 +760,26 @@
 
 
         <!-- PROJECT 1: CAPSTONE -->
+
         <article class="project-card">
+
+            <!-- TITLE BAR: NO ICON -->
 
             <div class="project-card-header">
 
-                <div class="project-icon">
-                    <i class="fas fa-building" aria-hidden="true"></i>
-                </div>
+                <span class="project-label">Academic Project</span>
 
-                <div>
-                    <span class="project-label">Academic Project</span>
-
-                    <h2 class="project-title">
-                        Capstone Project - Slum Relocation: Multistoried
-                        Residential Building Complex
-                    </h2>
-                </div>
+                <h2 class="project-title">
+                    Capstone Project - Slum Relocation: Multistoried
+                    Residential Building Complex
+                </h2>
 
             </div>
 
             <div class="project-card-body">
 
                 <ul class="project-description">
+
                     <li>
                         Designed a low-cost multistory residential complex
                         for a slum relocation initiative, considering
@@ -776,10 +795,12 @@
                         Prepared project planning documents and engineering
                         design deliverables collaboratively as part of a team.
                     </li>
+
                 </ul>
 
 
                 <!-- PROJECT IMAGE -->
+
                 <h3 class="preview-heading">
                     <i class="fas fa-image" aria-hidden="true"></i>
                     Project Drawing Preview
@@ -790,7 +811,7 @@
                     <a href="assets/project/Capstone.png"
                        target="_blank"
                        rel="noopener noreferrer"
-                       aria-label="Open the Capstone project image in a new tab">
+                       aria-label="Open the Capstone project picture in a new tab">
 
                         <img
                             class="project-image"
@@ -800,8 +821,7 @@
 
                         <div class="image-overlay">
                             <span>
-                                <i class="fas fa-expand-alt"
-                                   aria-hidden="true"></i>
+                                <i class="fas fa-expand-alt" aria-hidden="true"></i>
                                 View Full Image
                             </span>
                         </div>
@@ -811,8 +831,11 @@
                 </div>
 
 
-                <!-- IMAGE ACTIONS -->
+                <!-- ONLY TWO BUTTONS -->
+
                 <div class="project-actions">
+
+                    <!-- BUTTON 1: VIEW PICTURE -->
 
                     <a href="assets/project/Capstone.png"
                        target="_blank"
@@ -821,99 +844,89 @@
 
                         <i class="fas fa-image" aria-hidden="true"></i>
                         View Picture
+
                     </a>
 
-                    <a href="assets/project/Capstone_Projects_Drawing.pdf"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="project-btn project-btn-primary">
+
+                    <!-- BUTTON 2: SHOW/HIDE PDF -->
+
+                    <button
+                        type="button"
+                        id="togglePdfBtn"
+                        class="project-btn project-btn-primary"
+                        aria-expanded="false"
+                        aria-controls="pdfViewerSection">
 
                         <i class="fas fa-file-pdf" aria-hidden="true"></i>
-                        Open PDF in New Tab
-                    </a>
+                        View PDF Drawing
 
-                    <a href="assets/project/Capstone_Projects_Drawing.pdf"
-                       download="Capstone_Projects_Drawing.pdf"
-                       class="project-btn project-btn-outline">
-
-                        <i class="fas fa-download" aria-hidden="true"></i>
-                        Download PDF
-                    </a>
+                    </button>
 
                 </div>
 
 
-                <!-- EMBEDDED PDF VIEWER -->
-                <section class="pdf-section" aria-labelledby="pdf-title">
+                <!-- EMBEDDED PDF VIEWER: HIDDEN INITIALLY -->
 
-                    <div class="pdf-heading-row">
+                <section
+                    id="pdfViewerSection"
+                    class="pdf-section"
+                    aria-labelledby="pdf-title"
+                    hidden>
 
-                        <h3 class="preview-heading" id="pdf-title">
-                            <i class="fas fa-file-pdf" aria-hidden="true"></i>
-                            Full Project Drawing
-                        </h3>
+                    <h3 class="preview-heading" id="pdf-title">
 
-                        <a href="assets/project/Capstone_Projects_Drawing.pdf"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="project-btn project-btn-outline">
+                        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                        Capstone Project Drawing
 
-                            <i class="fas fa-external-link-alt"
-                               aria-hidden="true"></i>
-                            Open Separately
-                        </a>
-
-                    </div>
+                    </h3>
 
                     <iframe
+                        id="capstonePdf"
                         class="pdf-viewer"
-                        src="assets/project/Capstone_Projects_Drawing.pdf"
-                        title="Capstone Projects Drawing PDF Viewer"
-                        loading="lazy">
+                        data-src="assets/project/Capstone_Projects_Drawing.pdf"
+                        title="Capstone Project Drawing PDF Viewer">
 
                         <p>
                             Your browser does not support embedded PDFs.
-                            <a href="assets/project/Capstone_Projects_Drawing.pdf">
-                                Open the PDF here.
-                            </a>
+                            Please open the PDF file directly.
                         </p>
 
                     </iframe>
 
                     <p class="pdf-note">
-                        You can view the drawing above, open it in a separate
-                        browser tab, or download the PDF using the buttons.
+                        View the project drawing directly in this PDF viewer.
+                        Use your browser's PDF controls to navigate the document
+                        and zoom in or out.
                     </p>
 
                 </section>
 
             </div>
+
         </article>
 
 
-        <!-- PROJECT 2: BRTC -->
+        <!-- PROJECT 2: BRTC, BUET -->
+
         <article class="project-card">
+
+            <!-- TITLE BAR: NO ICON -->
 
             <div class="project-card-header">
 
-                <div class="project-icon">
-                    <i class="fas fa-hard-hat" aria-hidden="true"></i>
-                </div>
+                <span class="project-label">Professional Experience</span>
 
-                <div>
-                    <span class="project-label">Professional Experience</span>
-
-                    <h2 class="project-title">
-                        BRTC, BUET Project - Charges of Vetting BoQ for
-                        Civil Works under ESPSN Project DPDC
-                    </h2>
-                </div>
+                <h2 class="project-title">
+                    BRTC, BUET Project - Charges of Vetting BoQ for
+                    Civil Works under ESPSN Project DPDC
+                </h2>
 
             </div>
 
             <div class="project-card-body">
 
                 <ul class="project-description">
+
                     <li>
                         Reviewed and vetted Civil Bills of Quantities
                         (BoQs), including quantity estimation and unit-rate
@@ -929,6 +942,7 @@
                         Contributed to technical reviews, progress documentation,
                         and coordination of project deliverables.
                     </li>
+
                 </ul>
 
             </div>
@@ -939,19 +953,23 @@
 
 
     <!-- FOOTER -->
+
     <footer class="page-footer">
 
         <div class="container">
+
             <p>
                 This page was last updated on:
                 <time id="last-modified">Checking...</time>
             </p>
+
         </div>
 
     </footer>
 
 
     <!-- BACK TO TOP BUTTON -->
+
     <button type="button"
             class="back-to-top"
             id="backToTop"
@@ -959,10 +977,12 @@
             title="Back to top">
 
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
+
     </button>
 
 
     <!-- SCRIPTS -->
+
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
@@ -970,20 +990,61 @@
 
     <script>
         /* =========================================
-           DARK MODE TOGGLE
+           DARK MODE
         ========================================= */
-
-        function darkmode() {
-            document.body.classList.toggle("dark-mode");
-
-            const checkbox = document.getElementById("chk");
-            checkbox.checked = document.body.classList.contains("dark-mode");
-        }
 
         const themeCheckbox = document.getElementById("chk");
 
         themeCheckbox.addEventListener("change", function () {
-            darkmode();
+            document.body.classList.toggle("dark-mode", this.checked);
+        });
+
+
+        /* =========================================
+           PDF VIEWER TOGGLE
+        ========================================= */
+
+        const togglePdfBtn = document.getElementById("togglePdfBtn");
+        const pdfViewerSection = document.getElementById("pdfViewerSection");
+        const capstonePdf = document.getElementById("capstonePdf");
+
+        togglePdfBtn.addEventListener("click", function () {
+
+            const isOpening = pdfViewerSection.hidden;
+
+            // Show or hide the embedded PDF viewer.
+            pdfViewerSection.hidden = !isOpening;
+
+            // Update the button accessibility state.
+            togglePdfBtn.setAttribute("aria-expanded", String(isOpening));
+
+            if (isOpening) {
+
+                // Load the PDF only when the viewer is opened.
+                if (!capstonePdf.getAttribute("src")) {
+                    capstonePdf.setAttribute("src", capstonePdf.dataset.src);
+                }
+
+                // Change the button to Hide PDF Drawing.
+                togglePdfBtn.innerHTML =
+                    '<i class="fas fa-times" aria-hidden="true"></i> Hide PDF Drawing';
+
+                // Scroll to the PDF viewer.
+                setTimeout(function () {
+                    pdfViewerSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }, 50);
+
+            } else {
+
+                // Restore the original button label.
+                togglePdfBtn.innerHTML =
+                    '<i class="fas fa-file-pdf" aria-hidden="true"></i> View PDF Drawing';
+
+            }
+
         });
 
 
@@ -992,10 +1053,12 @@
         ========================================= */
 
         (function () {
+
             const lastModifiedElement = document.getElementById("last-modified");
             const lastModifiedDate = new Date(document.lastModified);
 
             if (!isNaN(lastModifiedDate.getTime())) {
+
                 const formattedDate = lastModifiedDate.toLocaleDateString(
                     "en-US",
                     {
@@ -1006,10 +1069,18 @@
                 );
 
                 lastModifiedElement.textContent = formattedDate;
-                lastModifiedElement.dateTime = lastModifiedDate.toISOString();
+
+                lastModifiedElement.setAttribute(
+                    "datetime",
+                    lastModifiedDate.toISOString()
+                );
+
             } else {
+
                 lastModifiedElement.textContent = "Unavailable";
+
             }
+
         })();
 
 
@@ -1020,21 +1091,25 @@
         const backToTopButton = document.getElementById("backToTop");
 
         window.addEventListener("scroll", function () {
+
             if (window.scrollY > 300) {
                 backToTopButton.classList.add("visible");
             } else {
                 backToTopButton.classList.remove("visible");
             }
+
         });
 
         backToTopButton.addEventListener("click", function () {
+
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
+
         });
+
     </script>
 
 </body>
 </html>
-```
