@@ -17,9 +17,10 @@
     <style>
         /* =====================================================
            QUICK CUSTOMIZE
-           --navy      : card title bars, buttons, active tab
-           --light     : #f2f2f2 fill (cards, navbar, footer)
+           --title-bg  : card title bars (teal)
            --header-bg : page header panel fill (orange)
+           --navy      : buttons, active tab, back-to-top
+           --light     : #f2f2f2 fill (cards, navbar, footer)
            Light mode -> :root      Dark mode -> body.dark-mode
            (Variables + shared sections are identical in
            publication.html and projects.html.)
@@ -31,7 +32,7 @@
 
             --page-bg: #ffffff;          /* page background           */
             --card-bg: var(--light);     /* card body                 */
-            --title-bg: var(--navy);     /* card title bars           */
+            --title-bg: #01949a;         /* card title bars           */
             --title-text: #ffffff;       /* text on card title bars   */
             --header-bg: #dc9750;        /* page header panel fill    */
             --header-text: #000000;      /* text on header panel      */
@@ -66,7 +67,7 @@
         body.dark-mode {
             --page-bg: #10152a;
             --card-bg: #1e2640;
-            --title-bg: #2c3860;
+            --title-bg: #01949a;
             --title-text: #ffffff;
             --text: #ffffff;
             --inset-bg: #151b33;
@@ -212,6 +213,7 @@
 
         /* =====================================================
            PAGE HEADER  (shared)  - orange fill panel
+           Sits directly on top of the first card (no gap)
         ===================================================== */
         .page-main {
             padding-top: 105px;
@@ -225,10 +227,10 @@
             align-items: center;
             gap: 18px;
             padding: 26px 28px;
-            margin-bottom: 34px;
-            border-radius: var(--radius);
+            margin-bottom: 0;                              /* no gap */
+            border-radius: var(--radius) var(--radius) 0 0; /* square bottom corners */
             background: var(--header-bg);
-            box-shadow: var(--shadow);
+            box-shadow: none;
             overflow: hidden;
         }
 
@@ -314,7 +316,19 @@
             box-shadow: var(--hover-shadow);
         }
 
-        /* dark blue title bar */
+        /* first card joins the header: square top corners,
+           fade only (no slide) and no hover lift, so no gap appears */
+        .page-header + .publication-card {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            animation-name: fadeIn;
+        }
+
+        .page-header + .publication-card:hover {
+            transform: none;
+        }
+
+        /* teal title bar */
         .publication-card-header {
             background: var(--title-bg);
             padding: 22px 28px;
@@ -493,6 +507,11 @@
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(14px); }
             to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
         }
 
         @media (prefers-reduced-motion: reduce) {
