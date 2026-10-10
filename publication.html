@@ -1,185 +1,587 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with Steller landing page.">
-    <meta name="author" content="Devcrud">
+    <meta name="description" content="Publications, conference papers, and undergraduate thesis of Md. Aslam Mia.">
+    <meta name="author" content="Md. Aslam Mia">
+
     <link rel="icon" type="image/png" href="assets/imgs/BUET_LOGO.png">
-    <title>Md. Aslam Mia</title>
+    <title>Publications | Md. Aslam Mia</title>
+
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/steller.css">
 
     <style>
-        /* Custom CSS for publication entry layout */
-        .publication-entry {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2em;
-        }
-        .publication-text {
-            flex: 1;
-            font-size: 0.9em;
-            margin-right: 1em;
-        }
-        .publication-image {
-            flex: 0 0 200px;
-        }
-        .publication-image img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        /* =========================
+           General page styling
+        ========================= */
+        :root {
+            --page-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #343a40;
+            --muted-color: #6c757d;
+            --border-color: #e5e9ef;
+            --header-bg: #e8f2ff;
+            --header-text: #234b78;
+            --accent-color: #007bff;
+            --button-bg: #007bff;
+            --button-hover: #0056b3;
+            --shadow: 0 5px 22px rgba(0, 0, 0, 0.07);
         }
 
-        /* Media query for mobile screens */
-        @media (max-width: 768px) {
-            .publication-entry {
+        body {
+            background-color: var(--page-bg);
+            color: var(--text-color);
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        body.dark-mode {
+            --page-bg: #121820;
+            --card-bg: #1b2531;
+            --text-color: #e5eaf0;
+            --muted-color: #b2bdca;
+            --border-color: #344253;
+            --header-bg: #243b5a;
+            --header-text: #e4efff;
+            --accent-color: #75b5ff;
+            --button-bg: #287bd1;
+            --button-hover: #1765b4;
+            --shadow: 0 5px 22px rgba(0, 0, 0, 0.22);
+        }
+
+        a {
+            color: var(--accent-color);
+        }
+
+        a:hover {
+            color: var(--button-hover);
+        }
+
+        /* =========================
+           Navigation bar
+        ========================= */
+        .navbar {
+            transition: background-color 0.25s ease;
+        }
+
+        .navbar-brand .title {
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1b2531 !important;
+        }
+
+        body.dark-mode .navbar .navbar-brand,
+        body.dark-mode .navbar .nav-link {
+            color: #e5eaf0 !important;
+        }
+
+        body.dark-mode .navbar .navbar-toggler {
+            border-color: #718096;
+        }
+
+        body.dark-mode .navbar .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* =========================
+           Dark-mode toggle
+        ========================= */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+
+        .checkbox {
+            opacity: 0;
+            position: absolute;
+        }
+
+        .label {
+            width: 50px;
+            height: 25px;
+            background-color: #343a40;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+        .label .fa-moon {
+            color: #f1c40f;
+            font-size: 13px;
+        }
+
+        .label .fa-sun {
+            color: #f39c12;
+            font-size: 13px;
+        }
+
+        .label .ball {
+            width: 19px;
+            height: 19px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.25s ease;
+        }
+
+        .checkbox:checked + .label .ball {
+            transform: translateX(25px);
+        }
+
+        .checkbox:focus-visible + .label {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 3px;
+        }
+
+        /* =========================
+           Page heading
+        ========================= */
+        .publication-page {
+            padding-top: 100px;
+            padding-bottom: 35px;
+            min-height: 65vh;
+        }
+
+        .page-heading {
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .page-subtitle {
+            color: var(--muted-color);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           Publication cards
+        ========================= */
+        .publication-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease,
+                background-color 0.25s ease;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 28px rgba(0, 0, 0, 0.11);
+        }
+
+        .publication-card-header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 15px 22px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .publication-type {
+            display: inline-block;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+            opacity: 0.9;
+        }
+
+        .publication-title {
+            font-size: 1.08rem;
+            line-height: 1.65;
+            font-weight: 700;
+            margin: 0;
+            color: inherit;
+        }
+
+        .publication-card-body {
+            padding: 22px;
+        }
+
+        .publication-authors {
+            margin-bottom: 9px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .publication-venue {
+            color: var(--muted-color);
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 17px;
+        }
+
+        .publication-status {
+            display: inline-block;
+            padding: 5px 11px;
+            margin-top: 4px;
+            border-radius: 20px;
+            background-color: #fff3cd;
+            color: #856404;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        body.dark-mode .publication-status {
+            background-color: #514321;
+            color: #ffe29a;
+        }
+
+        /* =========================
+           Buttons
+        ========================= */
+        .publication-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .publication-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 17px;
+            border-radius: 6px;
+            border: 1px solid var(--button-bg);
+            background-color: var(--button-bg);
+            color: #ffffff !important;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none !important;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .publication-btn:hover {
+            background-color: var(--button-hover);
+            border-color: var(--button-hover);
+            color: #ffffff !important;
+        }
+
+        .publication-btn:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 3px;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+        .page-footer {
+            margin-top: 15px;
+            padding: 22px 15px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--muted-color);
+            font-size: 0.9rem;
+        }
+
+        .page-footer p {
+            margin-bottom: 0;
+        }
+
+        /* =========================
+           Back-to-top button
+        ========================= */
+        #backToTop {
+            display: none;
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 1000;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--button-bg);
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        #backToTop:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-3px);
+        }
+
+        #backToTop:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 3px;
+        }
+
+        /* =========================
+           Responsive layout
+        ========================= */
+        @media (max-width: 991px) {
+            .theme-toggle {
+                margin: 12px 0 8px;
+            }
+
+            .publication-page {
+                padding-top: 90px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .publication-page {
+                padding-top: 85px;
+            }
+
+            .publication-card-header {
+                padding: 14px 16px;
+            }
+
+            .publication-card-body {
+                padding: 17px;
+            }
+
+            .publication-title {
+                font-size: 1rem;
+            }
+
+            .publication-actions {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
             }
-            .publication-text {
-                margin-right: 0;
-                margin-bottom: 1em;
-            }
-            .publication-image {
-                flex: none;
+
+            .publication-btn {
                 width: 100%;
+            }
+
+            #backToTop {
+                right: 15px;
+                bottom: 15px;
             }
         }
     </style>
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" onload="onload()">
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
-    <!-- Page navigation -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
         <div class="container">
+
             <a class="navbar-brand" href="index.html">
                 <h5 class="title">Md. Aslam Mia</h5>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto align-items-center">
+                <ul class="navbar-nav ml-auto align-items-lg-center">
+
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="publication.html">Publication</a>
+                        <a class="nav-link active" aria-current="page" href="publication.html">
+                            Publication
+                        </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="projects.html">Projects</a>
                     </li>
-                    <div>
-                        <input type="checkbox" class="checkbox" id="chk" onclick="darkmode()" />
-                        <label class="label" for="chk">
-                            <i class="fas fa-moon"></i>
-                            <i class="fas fa-sun"></i>
-                            <div class="ball"></div>
+
+                    <li class="nav-item theme-toggle">
+                        <input type="checkbox" class="checkbox" id="chk"
+                            aria-label="Toggle dark mode">
+
+                        <label class="label" for="chk" title="Toggle light/dark mode">
+                            <i class="fas fa-moon" aria-hidden="true"></i>
+                            <i class="fas fa-sun" aria-hidden="true"></i>
+                            <span class="ball"></span>
                         </label>
-                    </div>
+                    </li>
+
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- End of page navigation -->
+    <!-- End Navigation -->
+
 
     <!-- Publication section -->
-    <div class="container mt-5">
-        <div class="row text-center text-md-left">
+    <main class="container publication-page">
+
+        <div class="row">
             <div class="col-12">
-                <h2 class="mb-4">Publication</h2>
-                <div class="publication-entry">
-                <div class="publication-text">
-                
 
-<ol>
-    <li style="margin-bottom: 25px;">
-        <strong style="font-size: 17px;">"Evaluation of RL-Based Adaptive Traffic Signal Control under Different Connected and Autonomous Vehicle Penetration Levels in Mixed Traffic"</strong>
-        (under review)
+                <h2 class="page-heading">Publications</h2>
 
-        <p>Md. Aslam Mia, Md. Mizanur Rahman</p>
+                <p class="page-subtitle">
+                    Research publications and academic work in transportation engineering,
+                    traffic safety, and intelligent transportation systems.
+                </p>
 
-        <em>International Conference on Civil Engineering (ICCE) 2026, Dhaka, Bangladesh</em>
 
-        <!--
-        <p>
-            <a href="assets/publication/conference-p.png" target="_blank">
-                <button type="button">View Picture</button>
-            </a>
-            <a href="assets/files/conference-paper.pdf" target="_blank" download>
-                <button type="button">Download PDF</button>
-            </a>
-        </p>
-        -->
-    </li>
+                <!-- Publication 1 -->
+                <article class="publication-card">
 
-    <li>
-        <strong style="font-size: 17px;">Undergraduate Thesis: "Performance Evaluation of Traffic Efficiency and Safety, and RL-Based Adaptive Traffic Signal Control under Different Connected and Autonomous Vehicle Penetration Levels"</strong>
+                    <div class="publication-card-header">
+                        <span class="publication-type">Conference Paper</span>
 
-        <p>Md. Aslam Mia, Md. Mizanur Rahman</p>
+                        <h3 class="publication-title">
+                            Evaluation of RL-Based Adaptive Traffic Signal Control under
+                            Different Connected and Autonomous Vehicle Penetration Levels
+                            in Mixed Traffic
+                        </h3>
+                    </div>
 
-        <p>
-            <a href="assets/publication/Thesis.png" target="_blank">
-                <button type="button">View Picture</button>
-            </a>
-            <a href="assets/publication/Aslam_UG_Thesis.pdf" target="_blank" download>
-                <button type="button">Download PDF</button>
-            </a>
-        </p>
-    </li>
-</ol>
+                    <div class="publication-card-body">
 
-                </div>
-                <!-- <div class="publication-image">
-                <img src="assets/imgs/paper-thumbnail.png" alt="Paper thumbnail">
-               </div> -->
-               </div>
+                        <p class="publication-authors">
+                            Md. Aslam Mia, Md. Mizanur Rahman
+                        </p>
+
+                        <p class="publication-venue">
+                            International Conference on Civil Engineering (ICCE) 2026,
+                            Dhaka, Bangladesh
+                        </p>
+
+                        <span class="publication-status">Under Review</span>
+
+                    </div>
+                </article>
+
+
+                <!-- Publication 2: Undergraduate Thesis -->
+                <article class="publication-card">
+
+                    <div class="publication-card-header">
+                        <span class="publication-type">Undergraduate Thesis</span>
+
+                        <h3 class="publication-title">
+                            Performance Evaluation of Traffic Efficiency and Safety, and
+                            RL-Based Adaptive Traffic Signal Control under Different
+                            Connected and Autonomous Vehicle Penetration Levels
+                        </h3>
+                    </div>
+
+                    <div class="publication-card-body">
+
+                        <p class="publication-authors">
+                            Md. Aslam Mia, Md. Mizanur Rahman
+                        </p>
+
+                        <div class="publication-actions">
+                            <a class="publication-btn"
+                                href="assets/publication/Aslam_UG_Thesis.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                                Download PDF
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+
             </div>
         </div>
-    </div>
+    </main>
+    <!-- End Publication section -->
 
-    <!-- Footer section -->
-    <section class="section mt-3">
+
+    <!-- Footer -->
+    <footer class="page-footer">
         <p>
-            This page was last updated on :
-            <script type="text/javascript">
-                function lastModified() {
-                    var lastModDate = new Date(document.lastModified);
-                    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                    var formattedDate = months[lastModDate.getMonth()] + ' ' + lastModDate.getDate() + ', ' + lastModDate.getFullYear();
-                    document.write(formattedDate);
-                }
-                lastModified();
-            </script>
+            This page was last updated on:
+            <span id="lastModified">Loading...</span>
         </p>
-    </section>
+    </footer>
+
+
+    <!-- Back-to-top button -->
+    <button id="backToTop" type="button" aria-label="Back to top"
+        title="Back to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
 
     <!-- Core JavaScript -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- Steller JS -->
     <script src="assets/js/steller.js"></script>
 
+    <script>
+        // Dark mode
+        function darkmode() {
+            document.body.classList.toggle("dark-mode");
+
+            const isDarkMode = document.body.classList.contains("dark-mode");
+            document.getElementById("chk").checked = isDarkMode;
+        }
+
+        // Connect the checkbox to the dark-mode function
+        document.getElementById("chk").addEventListener("change", function () {
+            document.body.classList.toggle("dark-mode", this.checked);
+        });
+
+        // Last-modified date
+        (function () {
+            const dateElement = document.getElementById("lastModified");
+            const lastModifiedDate = new Date(document.lastModified);
+
+            if (!isNaN(lastModifiedDate.getTime())) {
+                const options = {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                };
+
+                dateElement.textContent = lastModifiedDate.toLocaleDateString(
+                    "en-US", options
+                );
+            } else {
+                dateElement.textContent = "Not available";
+            }
+        })();
+
+        // Back-to-top button
+        const backToTopButton = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", function () {
+            backToTopButton.style.display =
+                window.scrollY > 300 ? "block" : "none";
+        });
+
+        backToTopButton.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
+```
