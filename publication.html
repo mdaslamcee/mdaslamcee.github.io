@@ -17,45 +17,47 @@
     <style>
         /* =====================================================
            QUICK CUSTOMIZE
-           --title-bg  : card title bars (teal)
-           --header-bg : page header panel fill (orange)
-           --navy      : buttons, active tab, back-to-top
+           --title-bg  : card title bars          (#CCEAEA)
+           --header-bg : page header panel fill   (#01949a)
+           --navy      : buttons, active tab, back-to-top (#CCEAEA)
+           --teal      : small accents (bullets, focus ring, toggle)
            --light     : #f2f2f2 fill (cards, navbar, footer)
            Light mode -> :root      Dark mode -> body.dark-mode
            (Variables + shared sections are identical in
            publication.html and projects.html.)
         ===================================================== */
         :root {
-            --navy: #1e2640;
-            --navy-hover: #2f3b66;
+            --navy: #CCEAEA;
+            --navy-hover: #b3dede;
+            --teal: #01949a;
             --light: #f2f2f2;
 
             --page-bg: #ffffff;          /* page background           */
             --card-bg: var(--light);     /* card body                 */
-            --title-bg: #01949a;         /* card title bars           */
-            --title-text: #ffffff;       /* text on card title bars   */
-            --header-bg: #dc9750;        /* page header panel fill    */
+            --title-bg: #CCEAEA;         /* card title bars           */
+            --title-text: #000000;       /* text on card title bars   */
+            --header-bg: #01949a;        /* page header panel fill    */
             --header-text: #000000;      /* text on header panel      */
             --text: #000000;             /* text on light areas       */
             --inset-bg: #ffffff;         /* image frame               */
 
             --btn-bg: var(--navy);       /* main button               */
             --btn-hover: var(--navy-hover);
-            --btn-text: #ffffff;
+            --btn-text: #000000;
             --btn2-bg: #ffffff;          /* secondary button          */
             --btn2-hover: var(--navy);
             --btn2-text: #000000;
 
-            --pill-bg: var(--light);     /* small label on title bar  */
-            --pill-text: var(--navy);
-            --marker: var(--navy);       /* bullet color              */
+            --pill-bg: #ffffff;          /* small label on title bar  */
+            --pill-text: #000000;
+            --marker: var(--teal);       /* bullet color              */
 
             --nav-bg: var(--light);
             --nav-text: #000000;
             --nav-active-bg: var(--navy);
-            --nav-active-text: #ffffff;
-            --nav-hover-bg: rgba(30, 38, 64, 0.09);
-            --toggle-track: var(--navy);
+            --nav-active-text: #000000;
+            --nav-hover-bg: rgba(1, 148, 154, 0.12);
+            --toggle-track: var(--teal);
 
             --footer-bg: var(--light);
 
@@ -67,8 +69,8 @@
         body.dark-mode {
             --page-bg: #10152a;
             --card-bg: #1e2640;
-            --title-bg: #01949a;
-            --title-text: #ffffff;
+            --title-bg: #CCEAEA;
+            --title-text: #000000;
             --text: #ffffff;
             --inset-bg: #151b33;
 
@@ -207,12 +209,12 @@
         }
 
         .checkbox:focus-visible + .label {
-            outline: 2px solid var(--navy);
+            outline: 2px solid var(--teal);
             outline-offset: 3px;
         }
 
         /* =====================================================
-           PAGE HEADER  (shared)  - orange fill panel
+           PAGE HEADER  (shared)  - teal fill panel
            Sits directly on top of the first card (no gap)
         ===================================================== */
         .page-main {
@@ -270,7 +272,7 @@
             height: 58px;
             border-radius: 16px;
             background: var(--navy);
-            color: #ffffff;
+            color: #000000;
             font-size: 23px;
         }
 
@@ -328,7 +330,7 @@
             transform: none;
         }
 
-        /* teal title bar */
+        /* light teal title bar */
         .publication-card-header {
             background: var(--title-bg);
             padding: 22px 28px;
@@ -379,7 +381,7 @@
             margin-left: 8px;
             padding: 3px 12px;
             border-radius: 20px;
-            background-color: #f2f2f2;
+            background-color: #ffffff;
             color: #000000;
             font-size: 0.76rem;
             font-weight: 700;
@@ -424,7 +426,7 @@
         }
 
         .publication-btn:focus-visible {
-            outline: 2px solid var(--navy);
+            outline: 2px solid var(--teal);
             outline-offset: 3px;
         }
 
@@ -465,7 +467,7 @@
             border: none;
             border-radius: 50%;
             background: var(--navy);
-            color: #ffffff;
+            color: #000000;
             font-size: 17px;
             cursor: pointer;
             box-shadow: var(--shadow);
@@ -497,7 +499,7 @@
         }
 
         #backToTop:focus-visible {
-            outline: 2px solid var(--navy);
+            outline: 2px solid var(--teal);
             outline-offset: 3px;
         }
 
