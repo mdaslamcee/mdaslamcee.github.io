@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,21 +15,51 @@
     <link rel="stylesheet" href="assets/css/steller.css">
 
     <style>
-        /* =========================
-           General page styling
-        ========================= */
+        /* =====================================================
+           QUICK CUSTOMIZE
+           Change colors, radius and shadows here only.
+           Dark-mode values are in "body.dark-mode" below.
+           (This :root block + the shared sections are identical
+           in publication.html and projects.html.)
+        ===================================================== */
         :root {
-            --page-bg: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #343a40;
-            --muted-color: #6c757d;
-            --border-color: #e5e9ef;
-            --header-bg: #e8f2ff;
-            --header-text: #234b78;
-            --accent-color: #007bff;
-            --button-bg: #007bff;
-            --button-hover: #0056b3;
-            --shadow: 0 5px 22px rgba(0, 0, 0, 0.07);
+            --page-bg: #ffffff;          /* page background            */
+            --card-bg: #ffffff;          /* card body background       */
+            --surface: #f6f7f9;          /* card title-bar background  */
+            --text-color: #343a40;       /* normal text                */
+            --heading-color: #000000;    /* titles                     */
+            --muted-color: #6c757d;      /* secondary text             */
+            --border-color: #e3e6ea;     /* borders / dividers         */
+            --accent: #000000;           /* buttons, icons, underline  */
+            --accent-hover: #333333;     /* button hover               */
+            --accent-contrast: #ffffff;  /* text on accent buttons     */
+            --nav-bg: rgba(255, 255, 255, 0.96);
+            --shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+            --hover-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+            --radius: 12px;              /* card corner radius         */
+        }
+
+        body.dark-mode {
+            --page-bg: #14171a;
+            --card-bg: #1c2024;
+            --surface: #252a30;
+            --text-color: #e6e8ea;
+            --heading-color: #ffffff;
+            --muted-color: #aab2ba;
+            --border-color: #333a41;
+            --accent: #ffffff;
+            --accent-hover: #d9d9d9;
+            --accent-contrast: #000000;
+            --nav-bg: rgba(28, 32, 36, 0.96);
+            --shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+            --hover-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        /* =====================================================
+           BASE
+        ===================================================== */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -39,32 +68,14 @@
             transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        body.dark-mode {
-            --page-bg: #121820;
-            --card-bg: #1b2531;
-            --text-color: #e5eaf0;
-            --muted-color: #b2bdca;
-            --border-color: #344253;
-            --header-bg: #243b5a;
-            --header-text: #e4efff;
-            --accent-color: #75b5ff;
-            --button-bg: #287bd1;
-            --button-hover: #1765b4;
-            --shadow: 0 5px 22px rgba(0, 0, 0, 0.22);
-        }
-
-        a {
-            color: var(--accent-color);
-        }
-
-        a:hover {
-            color: var(--button-hover);
-        }
-
-        /* =========================
-           Navigation bar
-        ========================= */
+        /* =====================================================
+           NAVIGATION  (shared)
+        ===================================================== */
         .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 var(--border-color);
             transition: background-color 0.25s ease;
         }
 
@@ -72,13 +83,33 @@
             margin-bottom: 0;
         }
 
-        body.dark-mode .navbar {
-            background-color: #1b2531 !important;
+        .navbar .nav-link {
+            position: relative;
+            font-weight: 500;
+        }
+
+        /* underline for hover + current page */
+        .navbar .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 4px;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s ease;
+        }
+
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link[aria-current="page"]::after {
+            transform: scaleX(1);
         }
 
         body.dark-mode .navbar .navbar-brand,
         body.dark-mode .navbar .nav-link {
-            color: #e5eaf0 !important;
+            color: #e6e8ea !important;
         }
 
         body.dark-mode .navbar .navbar-toggler {
@@ -89,9 +120,9 @@
             filter: invert(1);
         }
 
-        /* =========================
-           Dark-mode toggle
-        ========================= */
+        /* =====================================================
+           DARK-MODE TOGGLE  (shared)
+        ===================================================== */
         .theme-toggle {
             display: flex;
             align-items: center;
@@ -99,8 +130,10 @@
         }
 
         .checkbox {
-            opacity: 0;
             position: absolute;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
         }
 
         .label {
@@ -143,83 +176,106 @@
         }
 
         .checkbox:focus-visible + .label {
-            outline: 2px solid var(--accent-color);
+            outline: 2px solid var(--accent);
             outline-offset: 3px;
         }
 
-        /* =========================
-           Page heading
-        ========================= */
-        .publication-page {
-            padding-top: 100px;
-            padding-bottom: 35px;
-            min-height: 65vh;
+        /* =====================================================
+           PAGE HEADER  (shared)
+        ===================================================== */
+        .page-main {
+            padding-top: 105px;
+            padding-bottom: 30px;
+            min-height: 70vh;
         }
 
-        .page-heading {
-            margin-bottom: 12px;
-            font-weight: 700;
-            color: var(--text-color);
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-bottom: 22px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-header-icon {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: var(--accent);
+            color: var(--accent-contrast);
+            font-size: 22px;
+        }
+
+        .page-title {
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.2;
+            margin: 0 0 6px;
+            color: var(--heading-color);
         }
 
         .page-subtitle {
+            margin: 0;
             color: var(--muted-color);
-            margin-bottom: 32px;
             line-height: 1.7;
         }
 
-        /* =========================
-           Publication cards
-        ========================= */
+        /* =====================================================
+           CARDS  (shared look)
+        ===================================================== */
         .publication-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: var(--radius);
             overflow: hidden;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
             box-shadow: var(--shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease,
-                background-color 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease,
+                        background-color 0.25s ease;
+            animation: fadeInUp 0.5s ease both;
         }
 
         .publication-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 9px 28px rgba(0, 0, 0, 0.11);
+            box-shadow: var(--hover-shadow);
         }
 
         .publication-card-header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 15px 22px;
+            background-color: var(--surface);
+            padding: 20px 26px;
             border-bottom: 1px solid var(--border-color);
         }
 
         .publication-type {
             display: inline-block;
-            font-size: 0.76rem;
+            font-size: 0.74rem;
             font-weight: 700;
-            letter-spacing: 0.7px;
+            letter-spacing: 1px;
             text-transform: uppercase;
+            color: var(--muted-color);
             margin-bottom: 7px;
-            opacity: 0.9;
         }
 
         .publication-title {
-            font-size: 1.08rem;
+            font-size: 1.12rem;
             line-height: 1.65;
             font-weight: 700;
             margin: 0;
-            color: inherit;
+            color: var(--heading-color);
         }
 
         .publication-card-body {
-            padding: 22px;
+            padding: 22px 26px 26px;
         }
 
         .publication-authors {
             margin-bottom: 9px;
             font-weight: 600;
-            color: var(--text-color);
+            color: var(--heading-color);
         }
 
         .publication-venue {
@@ -229,25 +285,25 @@
             margin-bottom: 17px;
         }
 
+        /* "Under Review" badge */
         .publication-status {
             display: inline-block;
-            padding: 5px 11px;
-            margin-top: 4px;
+            margin-left: 8px;
+            padding: 3px 11px;
+            border: 1px solid var(--border-color);
             border-radius: 20px;
-            background-color: #fff3cd;
-            color: #856404;
-            font-size: 0.82rem;
+            background-color: var(--card-bg);
+            color: var(--muted-color);
+            font-size: 0.76rem;
             font-weight: 600;
+            letter-spacing: 0.2px;
+            vertical-align: middle;
+            white-space: nowrap;
         }
 
-        body.dark-mode .publication-status {
-            background-color: #514321;
-            color: #ffe29a;
-        }
-
-        /* =========================
-           Buttons
-        ========================= */
+        /* =====================================================
+           BUTTONS  (shared)
+        ===================================================== */
         .publication-actions {
             display: flex;
             flex-wrap: wrap;
@@ -260,34 +316,37 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px 17px;
-            border-radius: 6px;
-            border: 1px solid var(--button-bg);
-            background-color: var(--button-bg);
-            color: #ffffff !important;
+            min-height: 42px;
+            padding: 9px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--accent);
+            background-color: var(--accent);
+            color: var(--accent-contrast) !important;
             font-size: 0.9rem;
             font-weight: 600;
             text-decoration: none !important;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
+            transition: background-color 0.2s ease, border-color 0.2s ease,
+                        transform 0.2s ease;
         }
 
         .publication-btn:hover {
-            background-color: var(--button-hover);
-            border-color: var(--button-hover);
-            color: #ffffff !important;
+            background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
+            color: var(--accent-contrast) !important;
+            transform: translateY(-2px);
         }
 
         .publication-btn:focus-visible {
-            outline: 2px solid var(--accent-color);
+            outline: 2px solid var(--accent);
             outline-offset: 3px;
         }
 
-        /* =========================
-           Footer
-        ========================= */
+        /* =====================================================
+           FOOTER  (shared)
+        ===================================================== */
         .page-footer {
             margin-top: 15px;
-            padding: 22px 15px;
+            padding: 22px 15px 30px;
             border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--muted-color);
@@ -298,65 +357,103 @@
             margin-bottom: 0;
         }
 
-        /* =========================
-           Back-to-top button
-        ========================= */
+        /* =====================================================
+           BACK-TO-TOP  (shared)
+        ===================================================== */
         #backToTop {
-            display: none;
             position: fixed;
             right: 22px;
             bottom: 22px;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 44px;
             height: 44px;
             border: none;
             border-radius: 50%;
-            background-color: var(--button-bg);
-            color: #ffffff;
-            font-size: 18px;
+            background-color: var(--accent);
+            color: var(--accent-contrast);
+            font-size: 17px;
             cursor: pointer;
             box-shadow: var(--shadow);
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.25s ease, visibility 0.25s ease,
+                        transform 0.25s ease, background-color 0.2s ease;
+        }
+
+        #backToTop.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         #backToTop:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-3px);
+            background-color: var(--accent-hover);
         }
 
         #backToTop:focus-visible {
-            outline: 2px solid var(--accent-color);
+            outline: 2px solid var(--accent);
             outline-offset: 3px;
         }
 
-        /* =========================
-           Responsive layout
-        ========================= */
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
         @media (max-width: 991px) {
             .theme-toggle {
                 margin: 12px 0 8px;
             }
 
-            .publication-page {
-                padding-top: 90px;
+            .page-main {
+                padding-top: 95px;
             }
         }
 
         @media (max-width: 576px) {
-            .publication-page {
-                padding-top: 85px;
+            .page-main {
+                padding-top: 88px;
+            }
+
+            .page-header {
+                gap: 14px;
+            }
+
+            .page-header-icon {
+                width: 46px;
+                height: 46px;
+                font-size: 18px;
+                border-radius: 12px;
             }
 
             .publication-card-header {
-                padding: 14px 16px;
+                padding: 16px 18px;
             }
 
             .publication-card-body {
-                padding: 17px;
+                padding: 18px 18px 22px;
             }
 
             .publication-title {
-                font-size: 1rem;
+                font-size: 1.02rem;
             }
 
             .publication-actions {
@@ -401,9 +498,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="publication.html">
-                            Publication
-                        </a>
+                        <a class="nav-link" aria-current="page" href="publication.html">Publication</a>
                     </li>
 
                     <li class="nav-item">
@@ -429,89 +524,92 @@
 
 
     <!-- Publication section -->
-    <main class="container publication-page">
+    <main class="container page-main">
 
-        <div class="row">
-            <div class="col-12">
-
-                <h2 class="page-heading">Publications</h2>
-
+        <!-- Page header -->
+        <header class="page-header">
+            <div class="page-header-icon">
+                <i class="fas fa-book-open" aria-hidden="true"></i>
+            </div>
+            <div>
+                <h1 class="title page-title">Publications</h1>
                 <p class="page-subtitle">
-                    Research publications and academic work 
+                    Research publications and academic work
+                </p>
+            </div>
+        </header>
+
+
+        <!-- Publication 1 -->
+        <article class="publication-card">
+
+            <div class="publication-card-header">
+                <span class="publication-type">Conference Paper</span>
+
+                <h3 class="publication-title">
+                    Evaluation of RL-Based Adaptive Traffic Signal Control under
+                    Different Connected and Autonomous Vehicle Penetration Levels
+                    in Mixed Traffic <span class="publication-status">Under Review</span>
+                </h3>
+            </div>
+
+            <div class="publication-card-body">
+
+                <p class="publication-authors">
+                    Md. Aslam Mia, Md. Mizanur Rahman
                 </p>
 
+                <p class="publication-venue">
+                    International Conference on Civil Engineering (ICCE) 2026,
+                    Dhaka, Bangladesh
+                </p>
 
-                <!-- Publication 1 -->
-                <article class="publication-card">
-
-                    <div class="publication-card-header">
-                        <span class="publication-type">Conference Paper</span>
-
-                        <h3 class="publication-title">
-                            Evaluation of RL-Based Adaptive Traffic Signal Control under
-                            Different Connected and Autonomous Vehicle Penetration Levels
-                            in Mixed Traffic <span class="publication-status">Under Review</span>
-                        </h3>
-                    </div>
-
-                    <div class="publication-card-body">
-
-                        <p class="publication-authors">
-                            Md. Aslam Mia, Md. Mizanur Rahman
-                        </p>
-
-                        <p class="publication-venue">
-                            International Conference on Civil Engineering (ICCE) 2026,
-                            Dhaka, Bangladesh
-                        </p>
-                        <div class="publication-actions">
-                            <a class="publication-btn"
-                                href="assets/publication/Full_Paper.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
-                                Download PDF
-                            </a>
-                        </div>
-
-                    </div>
-                </article>
-
-
-                <!-- Publication 2: Undergraduate Thesis -->
-                <article class="publication-card">
-
-                    <div class="publication-card-header">
-                        <span class="publication-type">Undergraduate Thesis</span>
-
-                        <h3 class="publication-title">
-                            Performance Evaluation of Traffic Efficiency and Safety, and
-                            RL-Based Adaptive Traffic Signal Control under Different
-                            Connected and Autonomous Vehicle Penetration Levels
-                        </h3>
-                    </div>
-
-                    <div class="publication-card-body">
-
-                        <p class="publication-authors">
-                            Md. Aslam Mia, Md. Mizanur Rahman
-                        </p>
-
-                        <div class="publication-actions">
-                            <a class="publication-btn"
-                                href="assets/publication/Aslam_UG_Thesis.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
-                                Download PDF
-                            </a>
-                        </div>
-
-                    </div>
-                </article>
+                <div class="publication-actions">
+                    <a class="publication-btn"
+                        href="assets/publication/Full_Paper.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                        Download PDF
+                    </a>
+                </div>
 
             </div>
-        </div>
+        </article>
+
+
+        <!-- Publication 2: Undergraduate Thesis -->
+        <article class="publication-card">
+
+            <div class="publication-card-header">
+                <span class="publication-type">Undergraduate Thesis</span>
+
+                <h3 class="publication-title">
+                    Performance Evaluation of Traffic Efficiency and Safety, and
+                    RL-Based Adaptive Traffic Signal Control under Different
+                    Connected and Autonomous Vehicle Penetration Levels
+                </h3>
+            </div>
+
+            <div class="publication-card-body">
+
+                <p class="publication-authors">
+                    Md. Aslam Mia, Md. Mizanur Rahman
+                </p>
+
+                <div class="publication-actions">
+                    <a class="publication-btn"
+                        href="assets/publication/Aslam_UG_Thesis.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                        Download PDF
+                    </a>
+                </div>
+
+            </div>
+        </article>
+
     </main>
     <!-- End Publication section -->
 
@@ -540,14 +638,6 @@
 
     <script>
         // Dark mode
-        function darkmode() {
-            document.body.classList.toggle("dark-mode");
-
-            const isDarkMode = document.body.classList.contains("dark-mode");
-            document.getElementById("chk").checked = isDarkMode;
-        }
-
-        // Connect the checkbox to the dark-mode function
         document.getElementById("chk").addEventListener("change", function () {
             document.body.classList.toggle("dark-mode", this.checked);
         });
@@ -558,14 +648,9 @@
             const lastModifiedDate = new Date(document.lastModified);
 
             if (!isNaN(lastModifiedDate.getTime())) {
-                const options = {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric"
-                };
-
                 dateElement.textContent = lastModifiedDate.toLocaleDateString(
-                    "en-US", options
+                    "en-US",
+                    { year: "numeric", month: "short", day: "numeric" }
                 );
             } else {
                 dateElement.textContent = "Not available";
@@ -576,18 +661,13 @@
         const backToTopButton = document.getElementById("backToTop");
 
         window.addEventListener("scroll", function () {
-            backToTopButton.style.display =
-                window.scrollY > 300 ? "block" : "none";
+            backToTopButton.classList.toggle("visible", window.scrollY > 300);
         });
 
         backToTopButton.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
     </script>
 
 </body>
 </html>
-```

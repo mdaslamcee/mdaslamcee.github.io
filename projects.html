@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,79 +17,88 @@
     <link rel="stylesheet" href="assets/css/steller.css">
 
     <style>
-        /* =========================================
-           GENERAL STYLES
-        ========================================= */
-
+        /* =====================================================
+           QUICK CUSTOMIZE
+           Change colors, radius and shadows here only.
+           Dark-mode values are in "body.dark-mode" below.
+           (This :root block + the shared sections are identical
+           in publication.html and projects.html.)
+        ===================================================== */
         :root {
-            --primary: #007bff;
-            --primary-dark: #0056b3;
-            --page-bg: #f5f8fc;
-            --card-bg: #ffffff;
-            --text-color: #273449;
-            --muted-color: #6b7280;
-            --border-color: #e5eaf1;
-            --shadow: 0 8px 30px rgba(26, 54, 93, 0.07);
-            --hover-shadow: 0 16px 40px rgba(26, 54, 93, 0.13);
-
-            /* Project title bar colors */
-            --title-bar-bg: #e8f2ff;
-            --title-bar-border: #d2e3fc;
-            --title-bar-text: #17365d;
-            --title-bar-label: #0066cc;
+            --page-bg: #ffffff;          /* page background            */
+            --card-bg: #ffffff;          /* card body background       */
+            --surface: #f6f7f9;          /* card title-bar background  */
+            --text-color: #343a40;       /* normal text                */
+            --heading-color: #000000;    /* titles                     */
+            --muted-color: #6c757d;      /* secondary text             */
+            --border-color: #e3e6ea;     /* borders / dividers         */
+            --accent: #000000;           /* buttons, icons, underline  */
+            --accent-hover: #333333;     /* button hover               */
+            --accent-contrast: #ffffff;  /* text on accent buttons     */
+            --nav-bg: rgba(255, 255, 255, 0.96);
+            --shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+            --hover-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+            --radius: 12px;              /* card corner radius         */
         }
 
+        body.dark-mode {
+            --page-bg: #14171a;
+            --card-bg: #1c2024;
+            --surface: #252a30;
+            --text-color: #e6e8ea;
+            --heading-color: #ffffff;
+            --muted-color: #aab2ba;
+            --border-color: #333a41;
+            --accent: #ffffff;
+            --accent-hover: #d9d9d9;
+            --accent-contrast: #000000;
+            --nav-bg: rgba(28, 32, 36, 0.96);
+            --shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+            --hover-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        /* =====================================================
+           BASE
+        ===================================================== */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 90px;
         }
 
         body {
-            background: var(--page-bg);
+            background-color: var(--page-bg);
             color: var(--text-color);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        a,
-        button {
-            transition: color 0.25s ease,
-                        background-color 0.25s ease,
-                        transform 0.25s ease,
-                        box-shadow 0.25s ease;
-        }
-
-        /* =========================================
-           NAVIGATION
-        ========================================= */
-
+        /* =====================================================
+           NAVIGATION  (shared)
+        ===================================================== */
         .navbar {
-            background: rgba(255, 255, 255, 0.97);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 2px 18px rgba(0, 0, 0, 0.05);
-            transition: background-color 0.3s ease;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 var(--border-color);
+            transition: background-color 0.25s ease;
         }
 
         .navbar-brand .title {
-            font-weight: 700;
-            letter-spacing: 0.2px;
             margin-bottom: 0;
         }
 
         .navbar .nav-link {
-            font-weight: 500;
-            margin: 0 5px;
             position: relative;
+            font-weight: 500;
         }
 
+        /* underline for hover + current page */
         .navbar .nav-link::after {
             content: "";
             position: absolute;
-            left: 8px;
-            right: 8px;
-            bottom: 3px;
+            left: 12px;
+            right: 12px;
+            bottom: 4px;
             height: 2px;
-            background: var(--primary);
+            background: var(--accent);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.25s ease;
@@ -101,14 +109,26 @@
             transform: scaleX(1);
         }
 
-        /* =========================================
-           DARK MODE TOGGLE
-        ========================================= */
+        body.dark-mode .navbar .navbar-brand,
+        body.dark-mode .navbar .nav-link {
+            color: #e6e8ea !important;
+        }
 
+        body.dark-mode .navbar .navbar-toggler {
+            border-color: #718096;
+        }
+
+        body.dark-mode .navbar .navbar-toggler-icon {
+            filter: invert(1);
+        }
+
+        /* =====================================================
+           DARK-MODE TOGGLE  (shared)
+        ===================================================== */
         .theme-toggle {
             display: flex;
             align-items: center;
-            margin-left: 12px;
+            margin-left: 15px;
         }
 
         .checkbox {
@@ -119,187 +139,151 @@
         }
 
         .label {
-            background: #253047;
+            width: 50px;
+            height: 25px;
+            background-color: #343a40;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            border-radius: 50px;
             padding: 5px;
-            height: 27px;
-            width: 54px;
+            position: relative;
             cursor: pointer;
             margin-bottom: 0;
         }
 
         .label .fa-moon {
             color: #f1c40f;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .label .fa-sun {
             color: #f39c12;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .label .ball {
-            background: #ffffff;
-            width: 21px;
-            height: 21px;
-            position: absolute;
-            left: 3px;
-            top: 3px;
+            width: 19px;
+            height: 19px;
+            background-color: #ffffff;
             border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
             transition: transform 0.25s ease;
         }
 
         .checkbox:checked + .label .ball {
-            transform: translateX(27px);
+            transform: translateX(25px);
         }
 
         .checkbox:focus-visible + .label {
-            outline: 3px solid var(--primary);
+            outline: 2px solid var(--accent);
             outline-offset: 3px;
         }
 
-        /* =========================================
-           PAGE HEADER
-        ========================================= */
-
-        .projects-header {
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            padding: 60px 20px 45px;
-            margin-top: 90px;
-            margin-bottom: 35px;
-            background: linear-gradient(
-                135deg,
-                #eaf3ff 0%,
-                #f8fbff 55%,
-                #e9f7ff 100%
-            );
-            border-radius: 18px;
+        /* =====================================================
+           PAGE HEADER  (shared)
+        ===================================================== */
+        .page-main {
+            padding-top: 105px;
+            padding-bottom: 30px;
+            min-height: 70vh;
         }
 
-        .projects-header::before,
-        .projects-header::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            background: rgba(0, 123, 255, 0.06);
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-bottom: 22px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .projects-header::before {
-            width: 230px;
-            height: 230px;
-            top: -110px;
-            left: -55px;
-        }
-
-        .projects-header::after {
-            width: 190px;
-            height: 190px;
-            bottom: -115px;
-            right: -30px;
-        }
-
-        .header-icon {
+        .page-header-icon {
+            flex: 0 0 auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 62px;
-            height: 62px;
-            background: #ffffff;
-            color: var(--primary);
-            border-radius: 18px;
-            font-size: 25px;
-            box-shadow: var(--shadow);
-            margin-bottom: 18px;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: var(--accent);
+            color: var(--accent-contrast);
+            font-size: 22px;
         }
 
-        .projects-header h1 {
+        .page-title {
             font-size: clamp(28px, 4vw, 40px);
-            font-weight: 750;
-            margin-bottom: 12px;
-            color: #1e2b42;
+            line-height: 1.2;
+            margin: 0 0 6px;
+            color: var(--heading-color);
         }
 
-        .projects-header p {
-            max-width: 650px;
-            margin: 0 auto;
-            color: #64748b;
-            line-height: 1.8;
+        .page-subtitle {
+            margin: 0;
+            color: var(--muted-color);
+            line-height: 1.7;
         }
 
-        /* =========================================
+        /* =====================================================
            PROJECT CARDS
-        ========================================= */
-
+        ===================================================== */
         .project-card {
-            background: var(--card-bg);
+            background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            margin-bottom: 30px;
+            border-radius: var(--radius);
             overflow: hidden;
+            margin-bottom: 28px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s ease,
-                        box-shadow 0.3s ease,
-                        background-color 0.3s ease;
-            animation: fadeInUp 0.6s ease both;
+            transition: transform 0.25s ease, box-shadow 0.25s ease,
+                        background-color 0.25s ease;
+            animation: fadeInUp 0.5s ease both;
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             box-shadow: var(--hover-shadow);
         }
 
-        /* =========================================
-           COLORED PROJECT TITLE BARS
-           NO ICONS BEFORE PROJECT TITLES
-        ========================================= */
-
         .project-card-header {
-            display: block;
-            padding: 23px 28px;
-            background: var(--title-bar-bg);
-            border-bottom: 1px solid var(--title-bar-border);
-            transition: background-color 0.3s ease;
+            background-color: var(--surface);
+            padding: 20px 26px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .project-label {
             display: inline-block;
-            font-size: 11px;
+            font-size: 0.74rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--title-bar-label);
+            color: var(--muted-color);
             margin-bottom: 7px;
         }
 
         .project-title {
-            font-size: 19px;
-            font-weight: 700;
+            font-size: 1.2rem;
             line-height: 1.55;
-            color: var(--title-bar-text);
+            font-weight: 700;
             margin: 0;
+            color: var(--heading-color);
         }
 
         .project-card-body {
-            padding: 24px 28px 28px;
+            padding: 24px 26px 28px;
         }
 
         .project-description {
             padding-left: 20px;
-            margin: 0 0 25px;
+            margin: 0;
         }
 
         .project-description li {
             padding-left: 5px;
             margin-bottom: 12px;
             line-height: 1.8;
-            color: var(--muted-color);
+            color: var(--text-color);
         }
 
         .project-description li:last-child {
@@ -307,41 +291,44 @@
         }
 
         .project-description li::marker {
-            color: var(--primary);
+            color: var(--accent);
         }
 
-        /* =========================================
+        /* =====================================================
            IMAGE PREVIEW
-        ========================================= */
-
+        ===================================================== */
         .preview-heading {
             display: flex;
             align-items: center;
             gap: 9px;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 700;
-            margin: 28px 0 15px;
-            color: var(--text-color);
+            margin: 28px 0 14px;
+            color: var(--heading-color);
         }
 
         .preview-heading i {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .project-image-wrapper {
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
-            background: #eef2f7;
+            border-radius: 10px;
+            background: var(--surface);
             border: 1px solid var(--border-color);
         }
 
+        .project-image-wrapper > a {
+            display: block;
+        }
+
         .project-image {
+            display: block;
             width: 100%;
             max-height: 650px;
-            object-fit: contain;
-            display: block;
             margin: 0 auto;
+            object-fit: contain;
             transition: transform 0.45s ease;
         }
 
@@ -355,7 +342,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(13, 32, 58, 0.45);
+            background: rgba(0, 0, 0, 0.45);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
@@ -366,112 +353,116 @@
         }
 
         .image-overlay span {
-            padding: 11px 18px;
-            border-radius: 8px;
+            padding: 10px 18px;
+            border-radius: 50px;
             background: #ffffff;
-            color: #1e293b;
+            color: #000000;
             font-weight: 600;
             font-size: 14px;
         }
 
-        /* =========================================
-           TWO PROJECT BUTTONS ONLY
-        ========================================= */
-
+        /* =====================================================
+           BUTTONS  (shared look, same rounded style as "Download CV")
+        ===================================================== */
         .project-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 22px;
         }
 
         .project-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 9px;
-            min-height: 44px;
-            padding: 10px 18px;
-            border: 1px solid var(--primary);
-            border-radius: 9px;
+            gap: 8px;
+            min-height: 42px;
+            padding: 9px 20px;
+            border: 1px solid var(--accent);
+            border-radius: 50px;
             font-family: inherit;
-            font-size: 14px;
+            font-size: 0.9rem;
             font-weight: 600;
             line-height: 1.5;
             text-decoration: none !important;
             cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease,
+                        color 0.2s ease, transform 0.2s ease;
         }
 
-        .project-btn-primary {
-            background: var(--primary);
-            color: #ffffff !important;
-        }
-
-        .project-btn-primary:hover {
-            background: var(--primary-dark);
-            border-color: var(--primary-dark);
-            color: #ffffff !important;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
-        }
-
-        .project-btn-outline {
-            background: transparent;
-            color: var(--primary) !important;
-        }
-
-        .project-btn-outline:hover {
-            background: var(--primary);
-            color: #ffffff !important;
+        .project-btn:hover {
             transform: translateY(-2px);
         }
 
         .project-btn:focus-visible {
-            outline: 3px solid rgba(0, 123, 255, 0.35);
+            outline: 2px solid var(--accent);
             outline-offset: 3px;
         }
 
-        /* =========================================
-           FOOTER
-        ========================================= */
+        /* filled button */
+        .project-btn-primary {
+            background: var(--accent);
+            color: var(--accent-contrast) !important;
+        }
 
+        .project-btn-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            color: var(--accent-contrast) !important;
+        }
+
+        /* outlined button */
+        .project-btn-outline {
+            background: transparent;
+            color: var(--accent) !important;
+        }
+
+        .project-btn-outline:hover {
+            background: var(--accent);
+            color: var(--accent-contrast) !important;
+        }
+
+        /* =====================================================
+           FOOTER  (shared)
+        ===================================================== */
         .page-footer {
-            text-align: center;
-            padding: 25px 15px 35px;
-            margin-top: 30px;
+            margin-top: 15px;
+            padding: 22px 15px 30px;
             border-top: 1px solid var(--border-color);
+            text-align: center;
             color: var(--muted-color);
-            font-size: 13px;
+            font-size: 0.9rem;
         }
 
         .page-footer p {
             margin-bottom: 0;
         }
 
-        /* =========================================
-           BACK TO TOP
-        ========================================= */
-
+        /* =====================================================
+           BACK-TO-TOP  (shared)
+        ===================================================== */
         .back-to-top {
             position: fixed;
             right: 22px;
             bottom: 22px;
-            width: 44px;
-            height: 44px;
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 44px;
+            height: 44px;
             border: none;
             border-radius: 50%;
-            background: var(--primary);
-            color: #ffffff;
-            box-shadow: 0 5px 18px rgba(0, 123, 255, 0.3);
+            background-color: var(--accent);
+            color: var(--accent-contrast);
+            font-size: 17px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
-            transition: all 0.25s ease;
-            z-index: 1000;
-            cursor: pointer;
+            transition: opacity 0.25s ease, visibility 0.25s ease,
+                        transform 0.25s ease, background-color 0.2s ease;
         }
 
         .back-to-top.visible {
@@ -481,120 +472,80 @@
         }
 
         .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
+            background-color: var(--accent-hover);
         }
 
-        /* =========================================
-           DARK MODE
-        ========================================= */
-
-        body.dark-mode {
-            --page-bg: #111827;
-            --card-bg: #1f2937;
-            --text-color: #f3f4f6;
-            --muted-color: #c0c9d6;
-            --border-color: #374151;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-            --hover-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-
-            --title-bar-bg: #243b5a;
-            --title-bar-border: #344e70;
-            --title-bar-text: #ffffff;
-            --title-bar-label: #91c5ff;
-
-            background: var(--page-bg);
-            color: var(--text-color);
+        .back-to-top:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
         }
 
-        body.dark-mode .navbar {
-            background: rgba(24, 32, 46, 0.97);
-        }
-
-        body.dark-mode .navbar .navbar-brand,
-        body.dark-mode .navbar .nav-link {
-            color: #f3f4f6;
-        }
-
-        body.dark-mode .projects-header {
-            background: linear-gradient(135deg, #1b2c45, #1c2534);
-        }
-
-        body.dark-mode .projects-header h1 {
-            color: #f3f4f6;
-        }
-
-        body.dark-mode .projects-header p {
-            color: #c0c9d6;
-        }
-
-        body.dark-mode .header-icon {
-            background: #27364b;
-        }
-
-        body.dark-mode .project-image-wrapper {
-            background: #151d2a;
-        }
-
-        body.dark-mode .project-btn-outline {
-            color: #8fc4ff !important;
-            border-color: #6db2ff;
-        }
-
-        body.dark-mode .project-btn-outline:hover {
-            background: var(--primary);
-            color: #ffffff !important;
-        }
-
-        body.dark-mode .page-footer {
-            border-color: var(--border-color);
-        }
-
-        /* =========================================
-           ANIMATIONS
-        ========================================= */
-
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
-        /* =========================================
-           RESPONSIVE DESIGN
-        ========================================= */
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+        @media (max-width: 991px) {
+            .theme-toggle {
+                margin: 12px 0 8px;
+            }
+
+            .page-main {
+                padding-top: 95px;
+            }
+        }
 
         @media (max-width: 767px) {
-            .projects-header {
-                padding: 42px 18px 35px;
-                margin-top: 75px;
-                border-radius: 13px;
-            }
-
-            .project-card-header {
-                padding: 20px 18px;
-            }
-
-            .project-card-body {
-                padding: 20px 18px 24px;
-            }
-
-            .project-title {
-                font-size: 17px;
-            }
-
             .project-actions .project-btn {
                 flex: 1 1 180px;
             }
+        }
 
-            .theme-toggle {
-                margin: 12px 0;
+        @media (max-width: 576px) {
+            .page-main {
+                padding-top: 88px;
+            }
+
+            .page-header {
+                gap: 14px;
+            }
+
+            .page-header-icon {
+                width: 46px;
+                height: 46px;
+                font-size: 18px;
+                border-radius: 12px;
+            }
+
+            .project-card-header {
+                padding: 16px 18px;
+            }
+
+            .project-card-body {
+                padding: 18px 18px 22px;
+            }
+
+            .project-title {
+                font-size: 1.05rem;
+            }
+
+            .back-to-top {
+                right: 15px;
+                bottom: 15px;
             }
         }
 
@@ -603,23 +554,12 @@
                 flex: 1 1 100%;
             }
         }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
     </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
     <!-- NAVIGATION -->
-
     <nav class="navbar navbar-expand-lg navbar-light fixed-top"
          data-spy="affix" data-offset-top="0">
 
@@ -642,7 +582,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <ul class="navbar-nav ml-auto align-items-center">
+                <ul class="navbar-nav ml-auto align-items-lg-center">
 
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
@@ -684,32 +624,24 @@
 
 
     <!-- MAIN CONTENT -->
-
-    <main class="container">
+    <main class="container page-main">
 
         <!-- PAGE HEADER -->
-
-        <header class="projects-header">
-
-            <div class="header-icon">
+        <header class="page-header">
+            <div class="page-header-icon">
                 <i class="fas fa-project-diagram" aria-hidden="true"></i>
             </div>
-
-            <h1>Projects</h1>
-
-            <p>
-                Explore my academic and professional engineering projects
-               
-            </p>
-
+            <div>
+                <h1 class="title page-title">Projects</h1>
+                <p class="page-subtitle">
+                    Explore my academic and professional engineering projects
+                </p>
+            </div>
         </header>
 
 
         <!-- PROJECT 1: CAPSTONE -->
-
         <article class="project-card">
-
-            <!-- COLORED TITLE BAR WITHOUT AN ICON -->
 
             <div class="project-card-header">
 
@@ -746,7 +678,6 @@
 
 
                 <!-- PROJECT IMAGE -->
-
                 <h3 class="preview-heading">
                     <i class="fas fa-image" aria-hidden="true"></i>
                     Project Drawing Preview
@@ -777,12 +708,10 @@
                 </div>
 
 
-                <!-- TWO BUTTONS ONLY -->
-
+                <!-- BUTTONS -->
                 <div class="project-actions">
 
                     <!-- BUTTON 1: VIEW PICTURE -->
-
                     <a href="assets/project/Capstone.png"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -795,7 +724,6 @@
 
 
                     <!-- BUTTON 2: OPEN PDF IN A SEPARATE TAB -->
-
                     <a href="assets/project/Capstone_Projects_Drawing.pdf"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -814,10 +742,7 @@
 
 
         <!-- PROJECT 2: BRTC, BUET -->
-
         <article class="project-card">
-
-            <!-- COLORED TITLE BAR WITHOUT AN ICON -->
 
             <div class="project-card-header">
 
@@ -860,7 +785,6 @@
 
 
     <!-- FOOTER -->
-
     <footer class="page-footer">
 
         <div class="container">
@@ -876,7 +800,6 @@
 
 
     <!-- BACK TO TOP BUTTON -->
-
     <button type="button"
             class="back-to-top"
             id="backToTop"
@@ -889,87 +812,46 @@
 
 
     <!-- SCRIPTS -->
-
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
     <script src="assets/js/steller.js"></script>
 
     <script>
-        /* =========================================
-           DARK MODE
-        ========================================= */
-
-        const themeCheckbox = document.getElementById("chk");
-
-        themeCheckbox.addEventListener("change", function () {
+        /* DARK MODE */
+        document.getElementById("chk").addEventListener("change", function () {
             document.body.classList.toggle("dark-mode", this.checked);
         });
 
 
-        /* =========================================
-           LAST MODIFIED DATE
-        ========================================= */
-
+        /* LAST MODIFIED DATE */
         (function () {
-
             const lastModifiedElement = document.getElementById("last-modified");
             const lastModifiedDate = new Date(document.lastModified);
 
             if (!isNaN(lastModifiedDate.getTime())) {
-
-                const formattedDate = lastModifiedDate.toLocaleDateString(
+                lastModifiedElement.textContent = lastModifiedDate.toLocaleDateString(
                     "en-US",
-                    {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                    }
+                    { month: "short", day: "numeric", year: "numeric" }
                 );
-
-                lastModifiedElement.textContent = formattedDate;
-
-                lastModifiedElement.setAttribute(
-                    "datetime",
-                    lastModifiedDate.toISOString()
-                );
-
+                lastModifiedElement.setAttribute("datetime", lastModifiedDate.toISOString());
             } else {
-
                 lastModifiedElement.textContent = "Unavailable";
-
             }
-
         })();
 
 
-        /* =========================================
-           BACK TO TOP
-        ========================================= */
-
+        /* BACK TO TOP */
         const backToTopButton = document.getElementById("backToTop");
 
         window.addEventListener("scroll", function () {
-
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add("visible");
-            } else {
-                backToTopButton.classList.remove("visible");
-            }
-
+            backToTopButton.classList.toggle("visible", window.scrollY > 300);
         });
 
         backToTopButton.addEventListener("click", function () {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
-
     </script>
 
 </body>
 </html>
-```
