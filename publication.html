@@ -17,42 +17,80 @@
     <style>
         /* =====================================================
            QUICK CUSTOMIZE
-           Change colors, radius and shadows here only.
-           Dark-mode values are in "body.dark-mode" below.
-           (This :root block + the shared sections are identical
-           in publication.html and projects.html.)
+           1) Main colors  -> --accent / --accent-2 groups
+           2) Light mode   -> :root
+           3) Dark mode    -> body.dark-mode
+           (The variables and shared sections are identical in
+           publication.html and projects.html.)
         ===================================================== */
         :root {
-            --page-bg: #ffffff;          /* page background            */
-            --card-bg: #ffffff;          /* card body background       */
-            --surface: #f6f7f9;          /* card title-bar background  */
-            --text-color: #343a40;       /* normal text                */
-            --heading-color: #000000;    /* titles                     */
-            --muted-color: #6c757d;      /* secondary text             */
-            --border-color: #e3e6ea;     /* borders / dividers         */
-            --accent: #000000;           /* buttons, icons, underline  */
-            --accent-hover: #333333;     /* button hover               */
-            --accent-contrast: #ffffff;  /* text on accent buttons     */
-            --nav-bg: rgba(255, 255, 255, 0.96);
-            --shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-            --hover-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
-            --radius: 12px;              /* card corner radius         */
+            /* page + surfaces */
+            --page-bg: #f6f8fc;
+            --card-bg: #ffffff;
+            --text-color: #3a4352;
+            --heading-color: #141a2a;
+            --muted-color: #6b7587;
+            --border-color: #e2e7f0;
+            --nav-bg: rgba(255, 255, 255, 0.92);
+
+            /* accent 1 : indigo-blue */
+            --accent: #3f5ee0;
+            --accent-hover: #2f49b8;
+            --accent-soft: #eef1ff;
+            --accent-border: #d5dcff;
+            --accent-text: #2c3fa3;
+
+            /* accent 2 : teal */
+            --accent-2: #0f9d8a;
+            --accent-2-hover: #0b7d6e;
+            --accent-2-soft: #e6f7f4;
+            --accent-2-border: #bfeae3;
+            --accent-2-text: #0b6b5e;
+
+            /* status badge (Under Review) */
+            --status-bg: #fff2cc;
+            --status-text: #8a5a00;
+            --status-border: #f6dc8c;
+
+            --shadow: 0 4px 18px rgba(30, 45, 90, 0.07);
+            --hover-shadow: 0 12px 30px rgba(30, 45, 90, 0.14);
+            --radius: 14px;
+
+            /* Per-card color theme (card 1 = accent, card 2 = accent-2, repeats) */
+            --c: var(--accent);
+            --c-hover: var(--accent-hover);
+            --c-soft: var(--accent-soft);
+            --c-border: var(--accent-border);
+            --c-text: var(--accent-text);
         }
 
         body.dark-mode {
-            --page-bg: #14171a;
-            --card-bg: #1c2024;
-            --surface: #252a30;
-            --text-color: #e6e8ea;
+            --page-bg: #0f1320;
+            --card-bg: #181d2e;
+            --text-color: #d9deea;
             --heading-color: #ffffff;
-            --muted-color: #aab2ba;
-            --border-color: #333a41;
-            --accent: #ffffff;
-            --accent-hover: #d9d9d9;
-            --accent-contrast: #000000;
-            --nav-bg: rgba(28, 32, 36, 0.96);
-            --shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
-            --hover-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+            --muted-color: #a3adc2;
+            --border-color: #2a3148;
+            --nav-bg: rgba(20, 25, 40, 0.94);
+
+            --accent: #5a73ee;
+            --accent-hover: #7186f2;
+            --accent-soft: #212a52;
+            --accent-border: #35407a;
+            --accent-text: #b4c0ff;
+
+            --accent-2: #17a08c;
+            --accent-2-hover: #25b8a2;
+            --accent-2-soft: #14302d;
+            --accent-2-border: #235149;
+            --accent-2-text: #86e3d4;
+
+            --status-bg: #4a3a12;
+            --status-text: #ffd982;
+            --status-border: #6b5518;
+
+            --shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
         }
 
         /* =====================================================
@@ -75,7 +113,7 @@
             background: var(--nav-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 1px 0 var(--border-color);
+            box-shadow: 0 1px 0 var(--border-color), 0 6px 20px rgba(30, 45, 90, 0.04);
             transition: background-color 0.25s ease;
         }
 
@@ -88,7 +126,6 @@
             font-weight: 500;
         }
 
-        /* underline for hover + current page */
         .navbar .nav-link::after {
             content: "";
             position: absolute;
@@ -96,7 +133,8 @@
             right: 12px;
             bottom: 4px;
             height: 2px;
-            background: var(--accent);
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.25s ease;
@@ -109,7 +147,7 @@
 
         body.dark-mode .navbar .navbar-brand,
         body.dark-mode .navbar .nav-link {
-            color: #e6e8ea !important;
+            color: #e6e8ee !important;
         }
 
         body.dark-mode .navbar .navbar-toggler {
@@ -139,7 +177,7 @@
         .label {
             width: 50px;
             height: 25px;
-            background-color: #343a40;
+            background-color: #2b3350;
             border-radius: 50px;
             display: flex;
             align-items: center;
@@ -190,25 +228,50 @@
         }
 
         .page-header {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 18px;
-            padding-bottom: 22px;
-            margin-bottom: 32px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 24px 26px;
+            margin-bottom: 34px;
+            border: 1px solid var(--accent-border);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, var(--accent-soft) 0%, var(--card-bg) 55%, var(--accent-2-soft) 100%);
+            overflow: hidden;
+        }
+
+        .page-header::after {
+            content: "";
+            position: absolute;
+            right: -50px;
+            top: -70px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.07;
+            pointer-events: none;
         }
 
         .page-header-icon {
+            position: relative;
+            z-index: 1;
             flex: 0 0 auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            background: var(--accent);
-            color: var(--accent-contrast);
-            font-size: 22px;
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #ffffff;
+            font-size: 23px;
+            box-shadow: 0 8px 20px rgba(63, 94, 224, 0.28);
+        }
+
+        .page-header-text {
+            position: relative;
+            z-index: 1;
         }
 
         .page-title {
@@ -225,9 +288,10 @@
         }
 
         /* =====================================================
-           CARDS  (shared look)
+           PUBLICATION CARDS
         ===================================================== */
         .publication-card {
+            position: relative;
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
@@ -239,25 +303,46 @@
             animation: fadeInUp 0.5s ease both;
         }
 
+        /* colored top strip */
+        .publication-card::before {
+            content: "";
+            display: block;
+            height: 4px;
+            background: var(--c);
+        }
+
         .publication-card:hover {
             transform: translateY(-3px);
             box-shadow: var(--hover-shadow);
         }
 
+        /* card 2, 4, ... use the second color */
+        .publication-card:nth-of-type(even) {
+            --c: var(--accent-2);
+            --c-hover: var(--accent-2-hover);
+            --c-soft: var(--accent-2-soft);
+            --c-border: var(--accent-2-border);
+            --c-text: var(--accent-2-text);
+            animation-delay: 0.1s;
+        }
+
         .publication-card-header {
-            background-color: var(--surface);
+            background: linear-gradient(135deg, var(--c-soft), var(--card-bg) 90%);
             padding: 20px 26px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--c-border);
         }
 
         .publication-type {
             display: inline-block;
-            font-size: 0.74rem;
+            padding: 4px 12px;
+            margin-bottom: 10px;
+            border-radius: 50px;
+            background: var(--c);
+            color: #ffffff;
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.9px;
             text-transform: uppercase;
-            color: var(--muted-color);
-            margin-bottom: 7px;
         }
 
         .publication-title {
@@ -275,7 +360,7 @@
         .publication-authors {
             margin-bottom: 9px;
             font-weight: 600;
-            color: var(--heading-color);
+            color: var(--c-text);
         }
 
         .publication-venue {
@@ -289,20 +374,20 @@
         .publication-status {
             display: inline-block;
             margin-left: 8px;
-            padding: 3px 11px;
-            border: 1px solid var(--border-color);
+            padding: 3px 12px;
+            border: 1px solid var(--status-border);
             border-radius: 20px;
-            background-color: var(--card-bg);
-            color: var(--muted-color);
+            background-color: var(--status-bg);
+            color: var(--status-text);
             font-size: 0.76rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.2px;
             vertical-align: middle;
             white-space: nowrap;
         }
 
         /* =====================================================
-           BUTTONS  (shared)
+           BUTTONS
         ===================================================== */
         .publication-actions {
             display: flex;
@@ -317,27 +402,29 @@
             justify-content: center;
             gap: 8px;
             min-height: 42px;
-            padding: 9px 20px;
+            padding: 9px 22px;
             border-radius: 50px;
-            border: 1px solid var(--accent);
-            background-color: var(--accent);
-            color: var(--accent-contrast) !important;
+            border: 1px solid var(--c);
+            background-color: var(--c);
+            color: #ffffff !important;
             font-size: 0.9rem;
             font-weight: 600;
             text-decoration: none !important;
+            box-shadow: 0 6px 16px rgba(30, 45, 90, 0.15);
             transition: background-color 0.2s ease, border-color 0.2s ease,
-                        transform 0.2s ease;
+                        transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .publication-btn:hover {
-            background-color: var(--accent-hover);
-            border-color: var(--accent-hover);
-            color: var(--accent-contrast) !important;
+            background-color: var(--c-hover);
+            border-color: var(--c-hover);
+            color: #ffffff !important;
             transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(30, 45, 90, 0.22);
         }
 
         .publication-btn:focus-visible {
-            outline: 2px solid var(--accent);
+            outline: 2px solid var(--c);
             outline-offset: 3px;
         }
 
@@ -357,6 +444,11 @@
             margin-bottom: 0;
         }
 
+        .page-footer span {
+            color: var(--accent-text);
+            font-weight: 600;
+        }
+
         /* =====================================================
            BACK-TO-TOP  (shared)
         ===================================================== */
@@ -372,16 +464,16 @@
             height: 44px;
             border: none;
             border-radius: 50%;
-            background-color: var(--accent);
-            color: var(--accent-contrast);
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #ffffff;
             font-size: 17px;
             cursor: pointer;
-            box-shadow: var(--shadow);
+            box-shadow: 0 8px 20px rgba(63, 94, 224, 0.3);
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
             transition: opacity 0.25s ease, visibility 0.25s ease,
-                        transform 0.25s ease, background-color 0.2s ease;
+                        transform 0.25s ease;
         }
 
         #backToTop.visible {
@@ -391,7 +483,7 @@
         }
 
         #backToTop:hover {
-            background-color: var(--accent-hover);
+            transform: translateY(-3px);
         }
 
         #backToTop:focus-visible {
@@ -435,6 +527,7 @@
 
             .page-header {
                 gap: 14px;
+                padding: 18px;
             }
 
             .page-header-icon {
@@ -531,7 +624,7 @@
             <div class="page-header-icon">
                 <i class="fas fa-book-open" aria-hidden="true"></i>
             </div>
-            <div>
+            <div class="page-header-text">
                 <h1 class="title page-title">Publications</h1>
                 <p class="page-subtitle">
                     Research publications and academic work
