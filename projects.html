@@ -1,55 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description" content="Academic and professional engineering projects of Md. Aslam Mia.">
     <meta name="author" content="Md. Aslam Mia">
 
     <link rel="icon" type="image/png" href="assets/imgs/BUET_LOGO.png">
-
     <title>Projects | Md. Aslam Mia</title>
 
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/steller.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
     <style>
         /* =====================================================
-           QUICK CUSTOMIZE
-           --navy      : card title bars, buttons, active tab
-           --light     : #f2f2f2 fill (cards, navbar, footer)
-           --header-bg : page header panel fill (orange)
-           Light mode -> :root      Dark mode -> body.dark-mode
-           (Variables + shared sections are identical in
-           publication.html and projects.html.)
+           1. QUICK CUSTOMIZATION — SHARED COLOR VARIABLES
+           Change these colors to update the overall appearance.
         ===================================================== */
         :root {
             --navy: #1e2640;
             --navy-hover: #2f3b66;
             --light: #f2f2f2;
 
-            --page-bg: #ffffff;          /* page background           */
-            --card-bg: var(--light);     /* card body                 */
-            --title-bg: var(--navy);     /* card title bars           */
-            --title-text: #ffffff;       /* text on card title bars   */
-            --header-bg: #dc9750;        /* page header panel fill    */
-            --header-text: #000000;      /* text on header panel      */
-            --text: #000000;             /* text on light areas       */
-            --inset-bg: #ffffff;         /* image frame               */
+            --page-bg: #ffffff;
+            --card-bg: var(--light);
+            --title-bg: var(--navy);
+            --title-text: #ffffff;
+            --header-bg: #dc9750;
+            --header-text: #000000;
+            --text: #000000;
+            --inset-bg: #ffffff;
 
-            --btn-bg: var(--navy);       /* main button               */
+            --btn-bg: var(--navy);
             --btn-hover: var(--navy-hover);
             --btn-text: #ffffff;
-            --btn2-bg: #ffffff;          /* secondary button          */
+            --btn2-bg: #ffffff;
             --btn2-hover: var(--navy);
             --btn2-text: #000000;
 
-            --pill-bg: var(--light);     /* small label on title bar  */
+            --pill-bg: var(--light);
             --pill-text: var(--navy);
-            --marker: var(--navy);       /* bullet color              */
+            --marker: var(--navy);
 
             --nav-bg: var(--light);
             --nav-text: #000000;
@@ -57,7 +50,6 @@
             --nav-active-text: #ffffff;
             --nav-hover-bg: rgba(30, 38, 64, 0.09);
             --toggle-track: var(--navy);
-
             --footer-bg: var(--light);
 
             --shadow: 0 6px 22px rgba(30, 38, 64, 0.10);
@@ -65,6 +57,9 @@
             --radius: 14px;
         }
 
+        /* =====================================================
+           2. DARK MODE COLORS
+        ===================================================== */
         body.dark-mode {
             --page-bg: #10152a;
             --card-bg: #1e2640;
@@ -81,14 +76,12 @@
             --btn2-text: #ffffff;
 
             --marker: #f2f2f2;
-
             --nav-bg: #0b0f1f;
             --nav-text: #ffffff;
             --nav-active-bg: #2c3860;
             --nav-active-text: #ffffff;
             --nav-hover-bg: rgba(255, 255, 255, 0.10);
             --toggle-track: #2c3860;
-
             --footer-bg: #0b0f1f;
 
             --shadow: 0 6px 22px rgba(0, 0, 0, 0.40);
@@ -96,7 +89,7 @@
         }
 
         /* =====================================================
-           BASE
+           3. BASE PAGE STYLES
         ===================================================== */
         html {
             scroll-behavior: smooth;
@@ -109,7 +102,7 @@
         }
 
         /* =====================================================
-           NAVIGATION  (shared)  - no lines, filled active tab
+           4. NAVIGATION BAR
         ===================================================== */
         .navbar {
             background: var(--nav-bg) !important;
@@ -144,16 +137,16 @@
             color: var(--nav-active-text) !important;
         }
 
-        body.dark-mode .navbar .navbar-toggler {
+        body.dark-mode .navbar-toggler {
             border-color: transparent;
         }
 
-        body.dark-mode .navbar .navbar-toggler-icon {
+        body.dark-mode .navbar-toggler-icon {
             filter: invert(1);
         }
 
         /* =====================================================
-           DARK-MODE TOGGLE  (shared)
+           5. DARK-MODE TOGGLE
         ===================================================== */
         .theme-toggle {
             display: flex;
@@ -195,7 +188,7 @@
         .label .ball {
             width: 19px;
             height: 19px;
-            background-color: #ffffff;
+            background: #ffffff;
             border-radius: 50%;
             position: absolute;
             top: 3px;
@@ -213,7 +206,7 @@
         }
 
         /* =====================================================
-           PAGE HEADER  (shared)  - orange fill panel
+           6. MAIN PAGE HEADER
         ===================================================== */
         .page-main {
             padding-top: 105px;
@@ -234,7 +227,6 @@
             overflow: hidden;
         }
 
-        /* soft decorative shapes (fills only) */
         .page-header::before,
         .page-header::after {
             content: "";
@@ -294,10 +286,69 @@
         }
 
         /* =====================================================
-           PROJECT CARDS
+           7. SEARCH AND CATEGORY FILTERS
+        ===================================================== */
+        .project-tools {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .project-search {
+            flex: 1 1 230px;
+            min-width: 0;
+            padding: 11px 15px;
+            border: 1px solid #d4d6dc;
+            border-radius: 9px;
+            background: var(--card-bg);
+            color: var(--text);
+            outline: none;
+        }
+
+        .project-search:focus {
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(30, 38, 64, 0.12);
+        }
+
+        .filter-button {
+            border: 1px solid var(--navy);
+            border-radius: 9px;
+            padding: 10px 15px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background: var(--navy);
+            color: #ffffff;
+        }
+
+        body.dark-mode .filter-button:hover,
+        body.dark-mode .filter-button.active {
+            background: #f2f2f2;
+            color: #000000;
+            border-color: #f2f2f2;
+        }
+
+        .project-empty {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            color: var(--text);
+            background: var(--card-bg);
+            border-radius: var(--radius);
+        }
+
+        /* =====================================================
+           8. PROJECT CARDS
         ===================================================== */
         .project-card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border-radius: var(--radius);
             overflow: hidden;
             margin-bottom: 28px;
@@ -307,49 +358,46 @@
             animation: fadeInUp 0.5s ease both;
         }
 
-        .project-card:nth-of-type(even) {
-            animation-delay: 0.1s;
-        }
-
         .project-card:hover {
             transform: translateY(-3px);
             box-shadow: var(--hover-shadow);
         }
 
-        /* dark blue title bar */
+        .project-card[hidden] {
+            display: none !important;
+        }
+
         .project-card-header {
             background: var(--title-bg);
-            padding: 22px 28px;
+            color: var(--title-text);
+            padding: 22px 26px;
         }
 
         .project-label {
             display: inline-block;
-            padding: 4px 13px;
-            margin-bottom: 10px;
-            border-radius: 50px;
             background: var(--pill-bg);
             color: var(--pill-text);
-            font-size: 0.72rem;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 0.9px;
-            text-transform: uppercase;
+            margin-bottom: 12px;
         }
 
         .project-title {
-            font-size: 1.2rem;
-            line-height: 1.55;
-            font-weight: 700;
-            margin: 0;
             color: var(--title-text) !important;
+            font-size: clamp(20px, 2.5vw, 25px);
+            line-height: 1.5;
+            margin: 0;
         }
 
         .project-card-body {
-            padding: 24px 28px 28px;
+            padding: 25px 28px 28px;
         }
 
         .project-description {
-            padding-left: 20px;
-            margin: 0;
+            padding-left: 22px;
+            margin: 0 0 24px;
         }
 
         .project-description li {
@@ -359,37 +407,22 @@
             color: var(--text);
         }
 
-        .project-description li:last-child {
-            margin-bottom: 0;
-        }
-
         .project-description li::marker {
             color: var(--marker);
         }
 
         /* =====================================================
-           IMAGE PREVIEW
+           9. PROJECT IMAGE PREVIEW
         ===================================================== */
         .preview-heading {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 28px 0 14px;
             color: var(--text);
+            font-size: 18px;
+            margin: 25px 0 14px;
         }
 
         .preview-heading i {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            background: var(--title-bg);
-            color: var(--title-text);
-            font-size: 14px;
+            color: var(--marker);
+            margin-right: 7px;
         }
 
         .project-image-wrapper {
@@ -397,23 +430,25 @@
             overflow: hidden;
             border-radius: 10px;
             background: var(--inset-bg);
+            text-align: center;
         }
 
-        .project-image-wrapper > a {
+        .project-image-wrapper a {
             display: block;
+            position: relative;
         }
 
         .project-image {
             display: block;
             width: 100%;
-            max-height: 650px;
-            margin: 0 auto;
+            max-height: 520px;
             object-fit: contain;
-            transition: transform 0.45s ease;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
         }
 
         .project-image-wrapper:hover .project-image {
-            transform: scale(1.02);
+            transform: scale(1.015);
         }
 
         .image-overlay {
@@ -422,27 +457,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(30, 38, 64, 0.60);
+            background: rgba(15, 20, 38, 0.65);
+            color: #ffffff;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            transition: opacity 0.25s ease;
         }
 
-        .project-image-wrapper:hover .image-overlay {
+        .project-image-wrapper:hover .image-overlay,
+        .project-image-wrapper a:focus-visible .image-overlay {
             opacity: 1;
         }
 
         .image-overlay span {
-            padding: 10px 18px;
-            border-radius: 50px;
-            background: #f2f2f2;
-            color: #000000;
-            font-weight: 600;
-            font-size: 14px;
+            background: var(--navy);
+            padding: 12px 18px;
+            border-radius: 8px;
         }
 
         /* =====================================================
-           BUTTONS
+           10. PROJECT BUTTONS
         ===================================================== */
         .project-actions {
             display: flex;
@@ -456,50 +489,35 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 42px;
-            padding: 9px 24px;
-            border: none;
-            border-radius: 50px;
-            font-family: inherit;
-            font-size: 0.9rem;
+            padding: 11px 18px;
+            border-radius: 8px;
             font-weight: 600;
-            line-height: 1.5;
             text-decoration: none !important;
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease,
-                        transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease;
         }
 
-        .project-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(30, 38, 64, 0.22);
-        }
-
-        .project-btn:focus-visible {
-            outline: 2px solid var(--navy);
-            outline-offset: 3px;
-        }
-
-        /* main filled button */
         .project-btn-primary {
             background: var(--btn-bg);
             color: var(--btn-text) !important;
+            border: 1px solid var(--btn-bg);
         }
 
         .project-btn-primary:hover {
             background: var(--btn-hover);
             color: var(--btn-text) !important;
+            transform: translateY(-2px);
         }
 
-        /* secondary filled button */
         .project-btn-outline {
             background: var(--btn2-bg);
             color: var(--btn2-text) !important;
+            border: 1px solid var(--navy);
         }
 
         .project-btn-outline:hover {
             background: var(--btn2-hover);
             color: #ffffff !important;
+            transform: translateY(-2px);
         }
 
         body.dark-mode .project-btn-outline:hover {
@@ -507,56 +525,76 @@
         }
 
         /* =====================================================
-           FOOTER  (shared)  - filled band, no line
+           11. IMAGE LIGHTBOX
         ===================================================== */
-        .page-footer {
-            margin-top: 30px;
-            padding: 24px 15px 30px;
-            background: var(--footer-bg);
-            text-align: center;
-            color: var(--text);
-            font-size: 0.9rem;
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            padding: 55px 20px 20px;
+            background: rgba(0, 0, 0, 0.92);
         }
 
-        .page-footer p {
-            margin-bottom: 0;
-            color: var(--text);
+        .image-lightbox.open {
+            display: flex;
         }
 
-        .page-footer time {
-            font-weight: 600;
+        .image-lightbox img {
+            display: block;
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 12px;
+            right: 24px;
+            border: none;
+            background: transparent;
+            color: #ffffff;
+            font-size: 42px;
+            cursor: pointer;
+            line-height: 1;
         }
 
         /* =====================================================
-           BACK-TO-TOP  (shared)
+           12. FOOTER AND BACK-TO-TOP BUTTON
         ===================================================== */
+        .page-footer {
+            background: var(--footer-bg);
+            color: var(--text);
+            text-align: center;
+            padding: 24px 0;
+            margin-top: 15px;
+            transition: background-color 0.25s ease;
+        }
+
+        .page-footer p {
+            margin: 0;
+        }
+
         .back-to-top {
             position: fixed;
+            z-index: 1000;
             right: 22px;
             bottom: 22px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 44px;
             height: 44px;
             border: none;
             border-radius: 50%;
             background: var(--navy);
             color: #ffffff;
-            font-size: 17px;
-            cursor: pointer;
             box-shadow: var(--shadow);
+            cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
-            transition: opacity 0.25s ease, visibility 0.25s ease,
-                        transform 0.25s ease, background-color 0.2s ease;
-        }
-
-        body.dark-mode .back-to-top {
-            background: #f2f2f2;
-            color: #000000;
+            transition: all 0.25s ease;
         }
 
         .back-to-top.visible {
@@ -567,127 +605,101 @@
 
         .back-to-top:hover {
             background: var(--navy-hover);
-            transform: translateY(-3px);
-        }
-
-        body.dark-mode .back-to-top:hover {
-            background: #ffffff;
-        }
-
-        .back-to-top:focus-visible {
-            outline: 2px solid var(--navy);
-            outline-offset: 3px;
         }
 
         /* =====================================================
-           ANIMATION
+           13. ANIMATIONS AND RESPONSIVE DESIGN
         ===================================================== */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(14px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .page-main {
+                padding-top: 90px;
+            }
+
+            .page-header {
+                padding: 22px 18px;
+                gap: 13px;
+            }
+
+            .page-header-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .project-card-header {
+                padding: 20px;
+            }
+
+            .project-card-body {
+                padding: 20px;
+            }
+
+            .project-tools {
+                align-items: stretch;
+            }
+
+            .filter-button {
+                flex: 1 1 auto;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .project-btn {
+                width: 100%;
+            }
+
+            .theme-toggle {
+                margin: 12px 0;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+            *,
+            *::before,
+            *::after {
                 scroll-behavior: auto !important;
                 animation-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-        @media (max-width: 991px) {
-            .theme-toggle {
-                margin: 12px 0 8px;
-            }
-
-            .page-main {
-                padding-top: 95px;
-            }
-
-            .navbar .nav-link {
-                margin: 2px 0;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .project-actions .project-btn {
-                flex: 1 1 180px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .page-main {
-                padding-top: 88px;
-            }
-
-            .page-header {
-                gap: 14px;
-                padding: 20px 18px;
-            }
-
-            .page-header-icon {
-                width: 46px;
-                height: 46px;
-                font-size: 18px;
-                border-radius: 12px;
-            }
-
-            .project-card-header {
-                padding: 17px 18px;
-            }
-
-            .project-card-body {
-                padding: 18px 18px 22px;
-            }
-
-            .project-title {
-                font-size: 1.05rem;
-            }
-
-            .back-to-top {
-                right: 15px;
-                bottom: 15px;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .project-actions .project-btn {
-                flex: 1 1 100%;
-            }
-        }
     </style>
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+<body>
 
-    <!-- NAVIGATION -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top"
-         data-spy="affix" data-offset-top="0">
-
+    <!-- =====================================================
+         NAVIGATION BAR
+    ====================================================== -->
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-
             <a class="navbar-brand" href="index.html">
-                <h5 class="title">Md. Aslam Mia</h5>
+                <span class="title">Md. Aslam Mia</span>
             </a>
 
-            <button class="navbar-toggler"
-                    type="button"
+            <button class="navbar-toggler" type="button"
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent"
                     aria-expanded="false"
                     aria-label="Toggle navigation">
-
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                 <ul class="navbar-nav ml-auto align-items-lg-center">
-
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
@@ -697,37 +709,30 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"
-                           aria-current="page"
-                           href="projects.html">Projects</a>
+                        <a class="nav-link" aria-current="page" href="projects.html">
+                            Projects
+                        </a>
                     </li>
 
                     <li class="nav-item theme-toggle">
-
-                        <input type="checkbox"
-                               class="checkbox"
-                               id="chk"
+                        <input type="checkbox" class="checkbox" id="chk"
                                aria-label="Toggle dark mode">
 
-                        <label class="label"
-                               for="chk"
+                        <label class="label" for="chk"
                                title="Switch between light and dark mode">
-
                             <i class="fas fa-moon" aria-hidden="true"></i>
                             <i class="fas fa-sun" aria-hidden="true"></i>
                             <span class="ball"></span>
-
                         </label>
-
                     </li>
-
                 </ul>
             </div>
         </div>
     </nav>
 
-
-    <!-- MAIN CONTENT -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
     <main class="container page-main">
 
         <!-- PAGE HEADER -->
@@ -735,6 +740,7 @@
             <div class="page-header-icon">
                 <i class="fas fa-project-diagram" aria-hidden="true"></i>
             </div>
+
             <div class="page-header-text">
                 <h1 class="title page-title">Projects</h1>
                 <p class="page-subtitle">
@@ -743,25 +749,48 @@
             </div>
         </header>
 
+        <!-- SEARCH AND CATEGORY FILTERS -->
+        <section class="project-tools" aria-label="Find projects">
+            <input class="project-search" id="projectSearch" type="search"
+                   placeholder="Search projects..."
+                   aria-label="Search projects">
 
-        <!-- PROJECT 1: CAPSTONE -->
-        <article class="project-card">
+            <button class="filter-button active" type="button"
+                    data-filter="all" aria-pressed="true">
+                All projects
+            </button>
+
+            <button class="filter-button" type="button"
+                    data-filter="academic" aria-pressed="false">
+                Academic
+            </button>
+
+            <button class="filter-button" type="button"
+                    data-filter="professional" aria-pressed="false">
+                Professional
+            </button>
+        </section>
+
+        <p class="project-empty" id="projectEmpty" role="status">
+            No projects match your search.
+        </p>
+
+        <!-- =================================================
+             PROJECT 1: CAPSTONE PROJECT
+        ================================================== -->
+        <article class="project-card" data-category="academic">
 
             <div class="project-card-header">
-
                 <span class="project-label">Academic Project</span>
 
                 <h2 class="project-title">
                     Capstone Project - Slum Relocation: Multistoried
                     Residential Building Complex
                 </h2>
-
             </div>
 
             <div class="project-card-body">
-
                 <ul class="project-description">
-
                     <li>
                         Designed a low-cost multistory residential complex
                         for a slum relocation initiative, considering
@@ -777,28 +806,23 @@
                         Prepared project planning documents and engineering
                         design deliverables collaboratively as part of a team.
                     </li>
-
                 </ul>
 
-
-                <!-- PROJECT IMAGE -->
+                <!-- PROJECT IMAGE PREVIEW -->
                 <h3 class="preview-heading">
                     <i class="fas fa-image" aria-hidden="true"></i>
                     Project Drawing Preview
                 </h3>
 
                 <div class="project-image-wrapper">
-
                     <a href="assets/project/Capstone.png"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Open the Capstone project picture in a new tab">
+                       class="lightbox-trigger"
+                       aria-label="View the Capstone project picture">
 
-                        <img
-                            class="project-image"
-                            src="assets/project/Capstone.png"
-                            alt="Capstone Project - Slum Relocation: Multistoried Residential Building Complex"
-                            loading="lazy">
+                        <img class="project-image"
+                             src="assets/project/Capstone.png"
+                             alt="Capstone Project - Slum Relocation: Multistoried Residential Building Complex"
+                             loading="lazy">
 
                         <div class="image-overlay">
                             <span>
@@ -806,16 +830,11 @@
                                 View Full Image
                             </span>
                         </div>
-
                     </a>
-
                 </div>
 
-
-                <!-- BUTTONS -->
+                <!-- PROJECT ACTION BUTTONS -->
                 <div class="project-actions">
-
-                    <!-- BUTTON 1: VIEW PICTURE -->
                     <a href="assets/project/Capstone.png"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -823,11 +842,8 @@
 
                         <i class="fas fa-image" aria-hidden="true"></i>
                         View Picture
-
                     </a>
 
-
-                    <!-- BUTTON 2: OPEN PDF IN A SEPARATE TAB -->
                     <a href="assets/project/Capstone_Projects_Drawing.pdf"
                        target="_blank"
                        rel="noopener noreferrer"
@@ -835,34 +851,27 @@
 
                         <i class="fas fa-file-pdf" aria-hidden="true"></i>
                         View PDF Drawing
-
                     </a>
-
                 </div>
-
             </div>
-
         </article>
 
-
-        <!-- PROJECT 2: BRTC, BUET -->
-        <article class="project-card">
+        <!-- =================================================
+             PROJECT 2: BRTC, BUET
+        ================================================== -->
+        <article class="project-card" data-category="professional">
 
             <div class="project-card-header">
-
                 <span class="project-label">Professional Experience</span>
 
                 <h2 class="project-title">
                     BRTC, BUET Project - Charges of Vetting BoQ for
                     Civil Works under ESPSN Project DPDC
                 </h2>
-
             </div>
 
             <div class="project-card-body">
-
                 <ul class="project-description">
-
                     <li>
                         Reviewed and vetted Civil Bills of Quantities
                         (BoQs), including quantity estimation and unit-rate
@@ -878,82 +887,220 @@
                         Contributed to technical reviews, progress documentation,
                         and coordination of project deliverables.
                     </li>
-
                 </ul>
-
             </div>
-
         </article>
 
     </main>
 
-
-    <!-- FOOTER -->
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
     <footer class="page-footer">
-
         <div class="container">
-
             <p>
                 This page was last updated on:
                 <time id="last-modified">Checking...</time>
             </p>
-
         </div>
-
     </footer>
 
-
-    <!-- BACK TO TOP BUTTON -->
-    <button type="button"
-            class="back-to-top"
-            id="backToTop"
-            aria-label="Back to top"
-            title="Back to top">
-
+    <!-- BACK-TO-TOP BUTTON -->
+    <button type="button" class="back-to-top" id="backToTop"
+            aria-label="Back to top" title="Back to top">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
-
     </button>
 
+    <!-- IMAGE LIGHTBOX -->
+    <div class="image-lightbox" id="imageLightbox"
+         role="dialog" aria-modal="true"
+         aria-label="Project image preview">
 
-    <!-- SCRIPTS -->
+        <button class="lightbox-close" id="lightboxClose"
+                type="button" aria-label="Close image preview">
+            &times;
+        </button>
+
+        <img id="lightboxImage" src="" alt="">
+    </div>
+
+    <!-- =====================================================
+         REQUIRED JAVASCRIPT LIBRARIES
+    ====================================================== -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
     <script src="assets/js/steller.js"></script>
 
     <script>
-        /* DARK MODE */
-        document.getElementById("chk").addEventListener("change", function () {
+        /* =====================================================
+           1. DARK MODE WITH SAVED PREFERENCE
+        ===================================================== */
+        const themeToggle = document.getElementById("chk");
+        const savedTheme = localStorage.getItem("projects-theme");
+
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener("change", function () {
             document.body.classList.toggle("dark-mode", this.checked);
+
+            localStorage.setItem(
+                "projects-theme",
+                this.checked ? "dark" : "light"
+            );
         });
 
-
-        /* LAST MODIFIED DATE */
+        /* =====================================================
+           2. LAST MODIFIED DATE
+        ===================================================== */
         (function () {
-            const lastModifiedElement = document.getElementById("last-modified");
-            const lastModifiedDate = new Date(document.lastModified);
+            const dateElement = document.getElementById("last-modified");
+            const modifiedDate = new Date(document.lastModified);
 
-            if (!isNaN(lastModifiedDate.getTime())) {
-                lastModifiedElement.textContent = lastModifiedDate.toLocaleDateString(
+            if (!isNaN(modifiedDate.getTime())) {
+                dateElement.textContent = modifiedDate.toLocaleDateString(
                     "en-US",
-                    { month: "short", day: "numeric", year: "numeric" }
+                    {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric"
+                    }
                 );
-                lastModifiedElement.setAttribute("datetime", lastModifiedDate.toISOString());
+
+                dateElement.setAttribute(
+                    "datetime",
+                    modifiedDate.toISOString()
+                );
             } else {
-                lastModifiedElement.textContent = "Unavailable";
+                dateElement.textContent = "Unavailable";
             }
         })();
 
+        /* =====================================================
+           3. PROJECT SEARCH AND CATEGORY FILTERING
+        ===================================================== */
+        const searchInput = document.getElementById("projectSearch");
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const projectCards = document.querySelectorAll(".project-card");
+        const emptyMessage = document.getElementById("projectEmpty");
 
-        /* BACK TO TOP */
+        let activeFilter = "all";
+
+        function filterProjects() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            projectCards.forEach(function (card) {
+                const category = card.dataset.category;
+                const searchableText = card.textContent.toLowerCase();
+
+                const matchesCategory =
+                    activeFilter === "all" || category === activeFilter;
+
+                const matchesSearch = searchableText.includes(searchTerm);
+                const visible = matchesCategory && matchesSearch;
+
+                card.hidden = !visible;
+
+                if (visible) {
+                    visibleCount++;
+                }
+            });
+
+            emptyMessage.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+
+        searchInput.addEventListener("input", filterProjects);
+
+        filterButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                activeFilter = this.dataset.filter;
+
+                filterButtons.forEach(function (item) {
+                    const selected = item === button;
+
+                    item.classList.toggle("active", selected);
+                    item.setAttribute("aria-pressed", String(selected));
+                });
+
+                filterProjects();
+            });
+        });
+
+        /* =====================================================
+           4. IMAGE LIGHTBOX
+        ===================================================== */
+        const lightbox = document.getElementById("imageLightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        const closeLightboxButton = document.getElementById("lightboxClose");
+
+        let lastFocusedElement = null;
+
+        function openLightbox(imageLink) {
+            lastFocusedElement = document.activeElement;
+
+            const image = imageLink.querySelector("img");
+
+            lightboxImage.src = imageLink.href;
+            lightboxImage.alt = image ? image.alt : "Project image";
+
+            lightbox.classList.add("open");
+            document.body.style.overflow = "hidden";
+            closeLightboxButton.focus();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove("open");
+            lightboxImage.src = "";
+            document.body.style.overflow = "";
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
+        document.querySelectorAll(".lightbox-trigger").forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                openLightbox(this);
+            });
+        });
+
+        closeLightboxButton.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", function (event) {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && lightbox.classList.contains("open")) {
+                closeLightbox();
+            }
+        });
+
+        /* =====================================================
+           5. BACK-TO-TOP BUTTON
+        ===================================================== */
         const backToTopButton = document.getElementById("backToTop");
 
         window.addEventListener("scroll", function () {
-            backToTopButton.classList.toggle("visible", window.scrollY > 300);
+            backToTopButton.classList.toggle(
+                "visible",
+                window.scrollY > 300
+            );
         });
 
         backToTopButton.addEventListener("click", function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
     </script>
 
