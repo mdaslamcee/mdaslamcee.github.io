@@ -19,9 +19,9 @@
     <style>
         /* =====================================================
            QUICK CUSTOMIZE
-           --navy  : title fill (header panel, card title bars,
-                     buttons, active tab)
-           --light : #f2f2f2 fill (cards, navbar, footer)
+           --navy      : card title bars, buttons, active tab
+           --light     : #f2f2f2 fill (cards, navbar, footer)
+           --header-bg : page header panel fill (orange)
            Light mode -> :root      Dark mode -> body.dark-mode
            (Variables + shared sections are identical in
            publication.html and projects.html.)
@@ -33,8 +33,10 @@
 
             --page-bg: #ffffff;          /* page background           */
             --card-bg: var(--light);     /* card body                 */
-            --title-bg: var(--navy);     /* header panel + title bars */
-            --title-text: #ffffff;       /* text on title fill        */
+            --title-bg: var(--navy);     /* card title bars           */
+            --title-text: #ffffff;       /* text on card title bars   */
+            --header-bg: #dc9750;        /* page header panel fill    */
+            --header-text: #000000;      /* text on header panel      */
             --text: #000000;             /* text on light areas       */
             --inset-bg: #ffffff;         /* image frame               */
 
@@ -211,7 +213,7 @@
         }
 
         /* =====================================================
-           PAGE HEADER  (shared)  - dark blue fill panel
+           PAGE HEADER  (shared)  - orange fill panel
         ===================================================== */
         .page-main {
             padding-top: 105px;
@@ -227,7 +229,7 @@
             padding: 26px 28px;
             margin-bottom: 34px;
             border-radius: var(--radius);
-            background: var(--title-bg);
+            background: var(--header-bg);
             box-shadow: var(--shadow);
             overflow: hidden;
         }
@@ -239,7 +241,7 @@
             position: absolute;
             border-radius: 50%;
             background: #ffffff;
-            opacity: 0.05;
+            opacity: 0.18;
             pointer-events: none;
         }
 
@@ -267,8 +269,8 @@
             width: 58px;
             height: 58px;
             border-radius: 16px;
-            background: var(--light);
-            color: var(--navy);
+            background: var(--navy);
+            color: #ffffff;
             font-size: 23px;
         }
 
@@ -281,12 +283,12 @@
             font-size: clamp(28px, 4vw, 40px);
             line-height: 1.2;
             margin: 0 0 6px;
-            color: var(--title-text) !important;
+            color: var(--header-text) !important;
         }
 
         .page-subtitle {
             margin: 0;
-            color: var(--title-text);
+            color: var(--header-text);
             opacity: 0.85;
             line-height: 1.7;
         }
